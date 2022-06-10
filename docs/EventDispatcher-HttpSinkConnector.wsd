@@ -1,0 +1,45 @@
+@startuml
+title Sink Connector as Event Dispatcher
+package ka as "Kafka" {
+    queue src as "Source Topic" {
+
+    }
+
+     queue err as "Error Topic" {
+
+    }
+
+     queue succ as "Succcess Topic" {
+
+    }
+}
+
+ component ed as "Sink Connector as Event Dispatcher" {
+
+     
+
+    }
+
+      component transer as "Transformer" {
+
+    }
+
+   
+
+src --> ed: Read Events from MDP Platform
+ed --> err: Put result
+ed --> succ: Put result
+
+cloud "Azure Cloud" as cloud {
+  node eg as "Event Grid" {
+      frame "subscription #1"
+      frame "subscription #N"
+  }
+}
+
+ed --> transer : Envelope event to webhook
+
+transer --> eg : Send message to Azure Data Grid
+
+eg --> ed : Response from Azure Data Grid
+

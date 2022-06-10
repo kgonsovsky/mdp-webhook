@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "datahubPublish", "datahubPublish\datahubPublish.csproj", "{F8DBEB0D-D37D-474C-B464-C46784748712}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{07BDCA2E-7FFB-473D-A692-79FC4E54EA40}"
+	ProjectSection(SolutionItems) = preProject
+		docs\Database-Custom.wsd = docs\Database-Custom.wsd
+		docs\Delivery-Custom.wsd = docs\Delivery-Custom.wsd
+		docs\EventDispatcher-Consumer.wsd = docs\EventDispatcher-Consumer.wsd
+		docs\EventDispatcher-HttpSinkConnector.wsd = docs\EventDispatcher-HttpSinkConnector.wsd
+		docs\HighLevel.wsd = docs\HighLevel.wsd
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8DBEB0D-D37D-474C-B464-C46784748712}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DBEB0D-D37D-474C-B464-C46784748712}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DBEB0D-D37D-474C-B464-C46784748712}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DBEB0D-D37D-474C-B464-C46784748712}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CF211FBE-990A-4D46-8EE7-F23B76777306}
+	EndGlobalSection
+EndGlobal

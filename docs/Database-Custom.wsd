@@ -1,0 +1,161 @@
+@startuml WebHooks data
+title WebHooks model for generic topics / events
+package "Persistent storage" {
+
+
+
+entity "Subscription" {
+  *id 
+  --
+  DisplayName : text
+  --
+  PayloadUrl : text
+  Secret : text
+  --
+  IsActive: bool
+  Inverse: bool
+}
+
+entity Event as "Event" {
+  *Id
+  --
+  Name : text
+  Displayname : text
+  Description : text
+}
+
+note right of Event
+    Creation
+    Modification
+    Cancelation
+end note
+
+entity obj as "Object" {
+  *Id
+  --
+  Name : text
+  Displayname : text
+  Description : text
+}
+
+note left of obj
+    Reservation
+    Offer
+    Loyalty
+end note
+
+entity SE as "Subscription-Event" {
+  *SubscriptionId: Id
+  *EventId: Id 
+  --
+  IsActive: bool
+  Inverse: bool
+}
+
+
+note right of  SE::Inverse
+    if Inverse = true 
+        Include this  
+    else
+        Exclude this
+end note
+
+Subscription::Id }|-- SE::SubscriptionId
+Event::Id }|-- SE::EventId
+
+entity SO as "Subscription-Object" {
+  *SubscriptionId: Id
+  *ObjectId: Id
+  --
+  IsActive: bool
+  Inverse: bool
+}
+
+Subscription::Id }|-- SO::SubscriptionId
+obj::Id }|-- SO::ObjectId
+
+
+entity SOF as "Subcription-Object-Filter" {
+  *id  
+  *SubscriptionId: id  
+  *ObjectId: id
+  --
+  Template: Json
+  --
+  IsActive: bool
+  Inverse: bool
+}
+
+note right of SOF
+    Json template matching
+end note
+
+SO::SubscriptionId }|-- SOF::SubscriptionId
+SO::ObjectId }|-- SOF::ObjectId
+
+
+
+}
+
+' package "Delivry Queue" {
+
+
+' entity g as "Group" {
+'   *id
+'   --
+'   *EventId : id
+'   *Action: Id
+'   --
+'   Data: json
+' }
+
+    
+' entity p as "PayLoad" {
+'   *id
+'   --
+'   *GroupId: id  
+'   *SubscriptionId : id
+'   --
+'   SourceId: id
+'   --
+'   Created: timestamp
+'   Attempts: integer
+'   --
+'   Delivered: bool
+' }
+
+
+
+' note left of p::Attempts
+'     For retrier to decide 
+' end note
+
+
+' note right of p::SourceId
+'     Linkage to Master Source
+' end note
+
+' note right of p::Delivered
+'     Cleanout this payload
+' end note
+
+
+
+' entity "Response" {
+'   *id 
+'   --
+'   *PayLoadId : id
+'   --
+'   Created: timestamp
+'   Data: json
+'   StatusCode: int
+' }
+
+' g::id }|--  p::GroupId : Group events with same data
+' Response::PayLoadId |o-- p::id
+
+
+
+
+' }
+

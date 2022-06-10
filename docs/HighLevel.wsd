@@ -1,0 +1,102 @@
+@startuml
+title High level construction for MDP WebHook Proposal
+
+database ma as "Master Data Platform" {
+    
+}
+
+package Source {
+
+
+node phobs{
+
+}
+
+node crm as "Crm Connector" {
+
+}
+
+node opera as "Opera Connector"{
+
+}
+
+}
+
+phobs --> ma
+crm --> ma
+opera --> ma
+
+
+package Kafka{
+
+
+queue loy as "datahub.loaylty"{
+
+}
+
+queue acc as "datahub.account"{
+    
+}
+
+queue res as "datahub.reservations"{
+    
+}
+
+}
+
+
+ma --> loy
+ma --> acc
+ma --> res
+
+package mdp as  "MDP WebHook Solution" {
+    component disp as "Event Dispatcher"{
+
+    }
+
+note left of disp #Yellow
+- Consumer 
+or
+- Sink Connector
+end note
+
+
+    component transformer as "Transformer"{
+
+    }
+    component api as "WebHook API"{
+        stack su1 as "subscription #1" {
+
+        }
+
+        stack suN as "subscription #N" {
+
+        }
+    }
+
+
+note right of api #Yellow
+- Azure Data Grid
+or
+- Custom Solution
+end note
+
+    component del as "HTTP Delivery"{
+        
+    }
+
+    note right of del #Yellow
+- Azure Data Grid
+or
+- Custom Solution
+end note
+}
+
+loy --> disp
+acc --> disp
+res --> disp
+
+disp -right-> transformer: Envelope event to webhook
+transformer --> del: Send event to Delivery subsystem
+del --> su1: Send event to end consumer
+del --> suN: Send event to end consumer

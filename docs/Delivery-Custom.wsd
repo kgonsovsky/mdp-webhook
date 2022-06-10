@@ -1,0 +1,63 @@
+@startuml
+skinparam defaultFontSize 22
+skinparam backgroundColor #EEEBDC
+
+
+title WebHooks Delivery 
+
+start
+
+while (Cancelation Requested?) is (false)
+
+
+fork
+    :New message from\n Event Dispacther;
+
+    :Fetch subscriptions DB\n(considering filters);
+        if (Math event & subcription?) then (true)
+            :Put payload [event & subscription endpoint]\n to Queue;
+      else (false)
+        #pink :break;
+    endif
+
+fork again
+    :Continous payload delivery();
+    if (Peek Payload?) then (true)
+        partition #PaleGreen Queue {
+
+            repeat :HTTP Post()
+
+            split
+                :Thread #1;
+                split again
+                :Thread #N;
+            end split
+
+        if (200 Response?) then (true)
+            break
+        endif
+
+    -> false;
+    :Goto Retrier();
+        if (Retrier give chance?) then (true)
+             :Increment Attempts Counter;
+             :Put payload again to the end of Queue;
+        else (false)
+            #pink :break;
+        endif
+  
+            repeat while (Success?) is (false) not (true)
+        }
+    else (false)
+        #pink :break;
+    endif
+
+end fork
+
+endwhile (true)
+
+stop
+
+
+
+@enduml

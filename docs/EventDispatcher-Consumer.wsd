@@ -1,0 +1,47 @@
+@startuml
+title Consumer as Event Dispatcher
+
+
+ collections brokers as "Kafka brokers"
+
+
+package ka as "Kafka" {
+    queue src as "datahub.account" {
+
+    }
+
+     queue err as "datahub.reservation" {
+
+    }
+
+     queue succ as "datahub.loyalty" {
+
+    }
+}
+
+ ka --> brokers: Publish event to appropriate partition
+
+component ed1 as "Event Dispatcher (Consumer) #1"
+component ed2 as "Event Dispatcher (Consumer) #N"
+
+brokers --> ed1: Consume Source Topic\npartions 1 & 2
+ed1 --> brokers: Publish state update to log-compacted topic\npartions 1 & 2
+
+brokers --> ed2: Consume Source Topic\npartions 3 & 4
+ed2 --> brokers: Publish state update to log-compacted topic\npartions 3 & 4
+
+ed1 --> eg: Send Event to Azure
+ed2 --> eg: Send Event to Azure
+
+cloud "Azure Cloud" as cloud {
+node eg as "Event Grid" {
+   frame "subscription #1"
+    frame "subscription #N"
+}
+}
+
+
+
+' ed --> eg: Send message to Azure Data Grid
+
+' eg --> ed: Response from Azure Data Grid
