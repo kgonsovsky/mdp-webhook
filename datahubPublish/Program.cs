@@ -99,7 +99,7 @@ namespace CCloud
 ""type"":""string""
 ""optional"":false
 }
-""payload"":""{""_id"": {""_data"": ""82627A06CB000000032B022C0100296E5A1004BA90090870E04E3BBA59F3A4325E2E2446645F69640064627A06C926FA9FB10659D6B10004""}, ""operationType"": ""replace"", ""clusterTime"": {""$timestamp"": {""t"": 1652164299, ""i"": 3}}, ""fullDocument"": {""_id"": {""$oid"": ""627a06c926fa9fb10659d6b1""}, ""masterId"": ""dafb48e9-2197-4799-ba47-3bb5e0eec209"", ""isActive"": true, ""isDeleted"": false, ""createdBySystem"": ""PHOBS"", ""createdDate"": {""$date"": 1652164297903}, ""modifiedBySystem"": null, ""modifiedDate"": null, ""version"": 2, ""mappingFields"": {""VRC"": {""_id"": ""627a06cb7511d533fcebd7b4""}}, ""personalData"": {""firstName"": ""Damir"", ""lastName"": ""Imamović"", ""salutation"": null, ""gender"": null, ""language"": null, ""birthDate"": null, ""age"": null, ""familyStatusIds"": []}, ""address"": {""country"": null, ""city"": null, ""street"": null, ""zipCode"": null}, ""contact"": {""phone"": null, ""email"": null, ""viber"": null, ""messenger"": null, ""additional"": {""phones"": [], ""emails"": [""mosnik@icloud.com""], ""tempEmails"": []}}, ""additionalInformation"": {""revenueSegment"": null, ""isBlacklisted"": false, ""gdprDelete"": false, ""isVip"": false, ""customerMemberType"": null, ""isOtaRestricted"": false, ""extraMeal"": false, ""babyCot"": false, ""travelWithPets"": false, ""isTopGuest"": false}, ""advertisingPermissions"": {""email"": null, ""sms"": null, ""viber"": null, ""whatsApp"": null, ""push"": null, ""segmentation"": null}, ""products"": {""valamar"": null, ""camping"": null, ""bike"": null, ""valfresco"": null}, ""interestIds"": [], ""status"": null, ""duplicated"": false, ""confirmed"": false}, ""ns"": {""db"": ""DataHub"", ""coll"": ""accounts""}, ""documentKey"": {""_id"": {""$oid"": ""627a06c926fa9fb10659d6b1""}}}""
+""payload"":""{""_id"": {""_data"": ""82627A06CB000000032B022C0100296E5A1004BA90090870E04E3BBA59F3A4325E2E2446645F69640064627A06C926FA9FB10659D6B10004""}, ""operationType"": ""replaceX"", ""clusterTime"": {""$timestamp"": {""t"": 1652164299, ""i"": 3}}, ""fullDocument"": {""_id"": {""$oid"": ""627a06c926fa9fb10659d6b1""}, ""masterId"": ""dafb48e9-2197-4799-ba47-3bb5e0eec209"", ""isActive"": true, ""isDeleted"": false, ""createdBySystem"": ""PHOBS"", ""createdDate"": {""$date"": 1652164297903}, ""modifiedBySystem"": null, ""modifiedDate"": null, ""version"": 2, ""mappingFields"": {""VRC"": {""_id"": ""627a06cb7511d533fcebd7b4""}}, ""personalData"": {""firstName"": ""Damir"", ""lastName"": ""Imamović"", ""salutation"": null, ""gender"": null, ""language"": null, ""birthDate"": null, ""age"": null, ""familyStatusIds"": []}, ""address"": {""country"": null, ""city"": null, ""street"": null, ""zipCode"": null}, ""contact"": {""phone"": null, ""email"": null, ""viber"": null, ""messenger"": null, ""additional"": {""phones"": [], ""emails"": [""mosnik@icloud.com""], ""tempEmails"": []}}, ""additionalInformation"": {""revenueSegment"": null, ""isBlacklisted"": false, ""gdprDelete"": false, ""isVip"": false, ""customerMemberType"": null, ""isOtaRestricted"": false, ""extraMeal"": false, ""babyCot"": false, ""travelWithPets"": false, ""isTopGuest"": false}, ""advertisingPermissions"": {""email"": null, ""sms"": null, ""viber"": null, ""whatsApp"": null, ""push"": null, ""segmentation"": null}, ""products"": {""valamar"": null, ""camping"": null, ""bike"": null, ""valfresco"": null}, ""interestIds"": [], ""status"": null, ""duplicated"": false, ""confirmed"": false}, ""ns"": {""db"": ""DataHub"", ""coll"": ""accounts""}, ""documentKey"": {""_id"": {""$oid"": ""627a06c926fa9fb10659d6b1""}}}""
 }
 
             ";
@@ -192,8 +192,10 @@ namespace CCloud
             switch (mode)
             {
                 case "produce":
-                    await CreateTopicMaybe(topic, 1, 3, config);
-                    Produce(topic, config);
+                    await CreateTopicMaybe("__mdp", 1, 3, config);
+                    await CreateTopicMaybe("__mdpForAzureSink", 1, 3, config);
+                    Produce("__mdp", config);
+                    Produce("__mdpForAzureSink", config);
                     break;
                 case "consume":
                     Consume(topic, config);
