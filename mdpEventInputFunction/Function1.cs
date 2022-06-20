@@ -12,6 +12,8 @@ using System.Text.RegularExpressions;
 
 namespace mdpEventInputFunction
 {
+
+
     public static class MdpEventInputFunction
     {
         [FunctionName("mdpEventInputFunction")]

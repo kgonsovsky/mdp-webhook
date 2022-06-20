@@ -29,7 +29,7 @@ namespace CCloud
 {
     class Program
     {
-        static async Task<ClientConfig> LoadConfig(string configPath, string certDir)
+        static async Task<ClientConfig> LoadConfig(string configPath, string certDir, bool stantAlone)
         {
             try
             {
@@ -44,10 +44,17 @@ namespace CCloud
 
                 if (certDir != null)
                 {
-                    clientConfig.SecurityProtocol = SecurityProtocol.Plaintext;
-                    //clientConfig.SslCaLocation = "cacert.pem";
-                    //clientConfig.SaslMechanism = SaslMechanism.Plain;
+                    clientConfig.SslCaLocation = certDir;
+                }
 
+                if (stantAlone)
+                {
+                    clientConfig.SecurityProtocol = SecurityProtocol.Plaintext;      
+
+                }
+                else
+                {
+                    clientConfig.SslCaLocation = "cacert.pem";
                 }
 
                 return clientConfig;
@@ -179,23 +186,20 @@ namespace CCloud
 
             var mode = "produce";
             var topic = "__mdp";
-            var configPath = "./csharp.config";
             var certDir = "./";
 
-            //var mode = args[0];
-            //var topic = args[1];
-            //var configPath = args[2];
-            //var certDir = args.Length == 4 ? args[3] : null;
-
-            var config = await LoadConfig(configPath, certDir);
+            var config = await LoadConfig("./csharp.config", certDir,true);
+            var config_confluent = await LoadConfig("./csharp_confluent.config", certDir, false);
 
             switch (mode)
             {
                 case "produce":
                     await CreateTopicMaybe("__mdp", 1, 3, config);
                     await CreateTopicMaybe("__mdpForAzureSink", 1, 3, config);
+                    await CreateTopicMaybe("__mdp", 1, 3, config_confluent);
                     Produce("__mdp", config);
                     Produce("__mdpForAzureSink", config);
+                    Produce("__mdp", config_confluent);
                     break;
                 case "consume":
                     Consume(topic, config);
