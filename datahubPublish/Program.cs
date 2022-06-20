@@ -12,62 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Confluent.Kafka;
-using Confluent.Kafka.Admin;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using Confluent.Kafka;
+using Confluent.Kafka.Admin;
 
 
-namespace CCloud
+namespace DatahubPublish
 {
-    class Program
+    internal class Program
     {
-        static async Task<ClientConfig> LoadConfig(string configPath, string certDir, bool stantAlone)
+        internal const int Interval = 5;
+        internal const string Topic = "__mdp";
+
+        internal static List<ClientConfig> Configs;
+
+        private static ClientConfig LoadConfig(string configPath)
         {
-            try
-            {
-                var q = await File.ReadAllLinesAsync(configPath);
-                var cloudConfig = (await File.ReadAllLinesAsync(configPath))
-                    .Where(line => !line.StartsWith("#"))
-                    .ToDictionary(
-                        line => line.Substring(0, line.IndexOf('=')),
-                        line => line.Substring(line.IndexOf('=') + 1));
-
-                var clientConfig = new ClientConfig(cloudConfig);
-
-                if (certDir != null)
-                {
-                    clientConfig.SslCaLocation = certDir;
-                }
-
-                if (stantAlone)
-                {
-                    clientConfig.SecurityProtocol = SecurityProtocol.Plaintext;      
-
-                }
-                else
-                {
-                    clientConfig.SslCaLocation = "cacert.pem";
-                }
-
-                return clientConfig;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"An error occured reading the config file from '{configPath}': {e.Message}");
-                System.Environment.Exit(1);
-                return null; // avoid not-all-paths-return-value compiler error.
-            }
+            var cloudConfig = (File.ReadAllLines(configPath)).Where(line => !line.StartsWith("#"))
+                .ToDictionary(line => line.Substring(0, line.IndexOf('=')),
+                    line => line.Substring(line.IndexOf('=') + 1));
+            var clientConfig = new ClientConfig(cloudConfig);
+            var p = Path.GetDirectoryName(configPath) + "/" + Path.GetFileNameWithoutExtension(configPath) + ".pem";
+            if (System.IO.File.Exists(p))
+            clientConfig.SslCaLocation = p;
+            return clientConfig;
         }
 
-        static async Task CreateTopicMaybe(string name, int numPartitions, short replicationFactor, ClientConfig cloudConfig)
+        private static async Task CreateTopicMaybe(string name, int numPartitions, short replicationFactor, ClientConfig cloudConfig)
         {
             using (var adminClient = new AdminClientBuilder(cloudConfig).Build())
             {
@@ -89,8 +65,13 @@ namespace CCloud
                 }
             }
         }
-        
-        static void Produce(string topic, ClientConfig config)
+
+        /// <summary>
+        /// Produces the.
+        /// </summary>
+        /// <param name="topic">The topic.</param>
+        /// <param name="config">The config.</param>
+        private static void Produce(string topic, ClientConfig config)
         {
             using (var producer = new ProducerBuilder<string, string>(config).Build())
             {
@@ -98,20 +79,11 @@ namespace CCloud
                 int numMessages = 1;
                 for (int i=0; i<numMessages; ++i)
                 {
-                    var key = "reservation";
-                    var val = @"
+                    var key = "bookingEvent";
 
-{
-""schema"":{
-""type"":""string""
-""optional"":false
-}
-""payload"":""{""_id"": {""_data"": ""82627A06CB000000032B022C0100296E5A1004BA90090870E04E3BBA59F3A4325E2E2446645F69640064627A06C926FA9FB10659D6B10004""}, ""operationType"": ""replaceX"", ""clusterTime"": {""$timestamp"": {""t"": 1652164299, ""i"": 3}}, ""fullDocument"": {""_id"": {""$oid"": ""627a06c926fa9fb10659d6b1""}, ""masterId"": ""dafb48e9-2197-4799-ba47-3bb5e0eec209"", ""isActive"": true, ""isDeleted"": false, ""createdBySystem"": ""PHOBS"", ""createdDate"": {""$date"": 1652164297903}, ""modifiedBySystem"": null, ""modifiedDate"": null, ""version"": 2, ""mappingFields"": {""VRC"": {""_id"": ""627a06cb7511d533fcebd7b4""}}, ""personalData"": {""firstName"": ""Damir"", ""lastName"": ""Imamović"", ""salutation"": null, ""gender"": null, ""language"": null, ""birthDate"": null, ""age"": null, ""familyStatusIds"": []}, ""address"": {""country"": null, ""city"": null, ""street"": null, ""zipCode"": null}, ""contact"": {""phone"": null, ""email"": null, ""viber"": null, ""messenger"": null, ""additional"": {""phones"": [], ""emails"": [""mosnik@icloud.com""], ""tempEmails"": []}}, ""additionalInformation"": {""revenueSegment"": null, ""isBlacklisted"": false, ""gdprDelete"": false, ""isVip"": false, ""customerMemberType"": null, ""isOtaRestricted"": false, ""extraMeal"": false, ""babyCot"": false, ""travelWithPets"": false, ""isTopGuest"": false}, ""advertisingPermissions"": {""email"": null, ""sms"": null, ""viber"": null, ""whatsApp"": null, ""push"": null, ""segmentation"": null}, ""products"": {""valamar"": null, ""camping"": null, ""bike"": null, ""valfresco"": null}, ""interestIds"": [], ""status"": null, ""duplicated"": false, ""confirmed"": false}, ""ns"": {""db"": ""DataHub"", ""coll"": ""accounts""}, ""documentKey"": {""_id"": {""$oid"": ""627a06c926fa9fb10659d6b1""}}}""
-}
+                    var val = System.IO.File.ReadAllText(Directory.EnumerateFiles("./templates", "*.txt")
+                        .OrderBy(a => Guid.NewGuid()).First());
 
-            ";
-
-               //     val = @"{""a"": ""b""}";
 
 
                     Console.WriteLine($"Producing record: {key} {val}");
@@ -137,76 +109,26 @@ namespace CCloud
             }
         }
 
-        static void Consume(string topic, ClientConfig config)
+        /// <summary>
+        /// Mains the.
+        /// </summary>
+        /// <param name="args">The args.</param>
+        /// <returns>A Task.</returns>
+        private static async Task Main(string[] args)
         {
-            var consumerConfig = new ConsumerConfig(config);
-            consumerConfig.GroupId = "dotnet-example-group-1";
-            consumerConfig.AutoOffsetReset = AutoOffsetReset.Earliest;
-            consumerConfig.EnableAutoCommit = false;
-
-            CancellationTokenSource cts = new CancellationTokenSource();
-            Console.CancelKeyPress += (_, e) => {
-                e.Cancel = true; // prevent the process from terminating.
-                cts.Cancel();
-            };
-
-            using (var consumer = new ConsumerBuilder<string, string>(consumerConfig).Build())
+            Configs = Directory.EnumerateFiles("./configs", "*.txt").Select(a => LoadConfig(a)).ToList();
+            foreach (var c in Configs)
             {
-                consumer.Subscribe(topic);
-                var totalCount = 0;
-                try
-                {
-                    while (true)
-                    {
-                        var cr = consumer.Consume(cts.Token);
-                        totalCount += JObject.Parse(cr.Message.Value).Value<int>("count");
-                        Console.WriteLine($"Consumed record with key {cr.Message.Key} and value {cr.Message.Value}, and updated total count to {totalCount}");
-                    }
-                }
-                catch (OperationCanceledException)
-                {
-                    // Ctrl-C was pressed.
-                }
-                finally
-                {
-                    consumer.Close();
-                }
+                await CreateTopicMaybe(Topic, 1, 3, c);
             }
-        }
 
-        static void PrintUsage()
-        {
-            Console.WriteLine("usage: .. produce|consume <topic> <configPath> [<certDir>]");
-            System.Environment.Exit(1);
-        }
-
-        static async Task Main(string[] args)
-        {
-          //  if (args.Length != 3 && args.Length != 4) { PrintUsage(); }
-
-            var mode = "produce";
-            var topic = "__mdp";
-            var certDir = "./";
-
-            var config = await LoadConfig("./csharp.config", certDir,true);
-            var config_confluent = await LoadConfig("./csharp_confluent.config", certDir, false);
-
-            switch (mode)
+            while (true)
             {
-                case "produce":
-                    await CreateTopicMaybe("__mdp", 1, 3, config);
-                    await CreateTopicMaybe("__mdpForAzureSink", 1, 3, config);
-                    await CreateTopicMaybe("__mdp", 1, 3, config_confluent);
-                    Produce("__mdp", config);
-                    Produce("__mdpForAzureSink", config);
-                    Produce("__mdp", config_confluent);
-                    break;
-                case "consume":
-                    Consume(topic, config);
-                    break;
-                default:
-                    PrintUsage();
-                    break;
+                foreach (var c in Configs)
+                {
+                    Produce(Topic, c);
+                }
+                Thread.Sleep(Interval*1000);
             }
         }
     }

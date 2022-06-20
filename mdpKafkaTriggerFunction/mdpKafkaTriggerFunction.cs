@@ -19,6 +19,11 @@ namespace mdpKafkaTriggerFunction
         // For EventHubs
         // "pkc-epwny.eastus.azure.confluent.cloud:9092BrokerList": "{EVENT_HUBS_NAMESPACE}.servicebus.windows.net:9093"
         // "KafkaPassword":"{EVENT_HUBS_CONNECTION_STRING}
+        /// <summary>
+        /// Runs the.
+        /// </summary>
+        /// <param name="events">The events.</param>
+        /// <param name="log">The log.</param>
         [FunctionName("mdpKafkaTriggerFunction")]
         public void Run(
             [KafkaTrigger("pkc-epwny.eastus.azure.confluent.cloud:9092BrokerList",

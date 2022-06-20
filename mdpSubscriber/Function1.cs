@@ -18,6 +18,12 @@ namespace mdpSubscriber
     /// </summary>
     public static class MdpSubscriberFunction
     {
+        /// <summary>
+        /// Runs the.
+        /// </summary>
+        /// <param name="req">The req.</param>
+        /// <param name="log">The log.</param>
+        /// <returns>A Task.</returns>
         [FunctionName("mdpSubscriberFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
@@ -57,11 +63,26 @@ namespace mdpSubscriber
             return new OkObjectResult(responseMessage);
         }
 
+        /// <summary>
+        /// Events the type subcription validation.
+        /// </summary>
+        /// <param name="req">The req.</param>
+        /// <returns>A bool.</returns>
         private static bool EventTypeSubcriptionValidation(HttpRequest req) => req.Headers["aeg-event-type"].FirstOrDefault() =="SubscriptionValidation";
 
+        /// <summary>
+        /// Events the type notification.
+        /// </summary>
+        /// <param name="req">The req.</param>
+        /// <returns>A bool.</returns>
         private static bool EventTypeNotification(HttpRequest req)=> req.Headers["aeg-event-type"].FirstOrDefault() == "Notification";
 
-    
+
+        /// <summary>
+        /// Are the cloud event.
+        /// </summary>
+        /// <param name="jsonContent">The json content.</param>
+        /// <returns>A bool.</returns>
         private static bool IsCloudEvent(string jsonContent)
         {
             // Cloud events are sent one at a time, while Grid events

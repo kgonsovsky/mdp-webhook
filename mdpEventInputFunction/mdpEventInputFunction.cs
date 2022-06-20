@@ -14,8 +14,17 @@ namespace mdpEventInputFunction
 {
 
 
+    /// <summary>
+    /// The mdp event input function.
+    /// </summary>
     public static class MdpEventInputFunction
     {
+        /// <summary>
+        /// Runs the.
+        /// </summary>
+        /// <param name="req">The req.</param>
+        /// <param name="log">The log.</param>
+        /// <returns>A Task.</returns>
         [FunctionName("mdpEventInputFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,

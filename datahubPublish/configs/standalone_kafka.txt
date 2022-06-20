@@ -1,0 +1,7 @@
+﻿#kafka config
+bootstrap.servers=167.86.107.116:9092
+security.protocol=PLAINTEXT
+sasl.mechanisms=PLAIN
+sasl.username=123
+sasl.password=123
+session.timeout.ms=45000

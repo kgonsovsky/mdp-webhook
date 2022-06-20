@@ -16,14 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{07BDCA2E-7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mdpEventInputFunction", "mdpEventInputFunction\mdpEventInputFunction.csproj", "{97CE5B92-FAD9-4309-841E-1FE6BB6DFD76}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B1350420-748F-4E53-942E-5373D6BAE34D}"
-	ProjectSection(SolutionItems) = preProject
-		TextFile1.txt = TextFile1.txt
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mdpKafkaTriggerFunction", "mdpKafkaTriggerFunction\mdpKafkaTriggerFunction.csproj", "{577F3876-CC85-42E7-A2F4-34CC6FCD99FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdpKafkaTriggerFunction", "mdpKafkaTriggerFunction\mdpKafkaTriggerFunction.csproj", "{577F3876-CC85-42E7-A2F4-34CC6FCD99FE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mdpSubscriber", "mdpSubscriber\mdpSubscriber.csproj", "{550B88F0-2918-49DC-81CB-B485C880B9A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mdpSubscriber", "mdpSubscriber\mdpSubscriber.csproj", "{550B88F0-2918-49DC-81CB-B485C880B9A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

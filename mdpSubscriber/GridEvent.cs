@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace mdpSubscriber
 {
+    /// <summary>
+    /// The grid event.
+    /// </summary>
     public class GridEvent<T> where T : class
     {
         public string Id { get; set; }

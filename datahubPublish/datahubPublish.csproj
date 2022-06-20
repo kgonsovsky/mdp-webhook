@@ -11,18 +11,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="cacert.pem">
+    <None Update="configs\confluent_kafka.pem">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="csharp.config">
+    <None Update="configs\standalone_kafka.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="csharp_confluent.config">
+    <None Update="configs\confluent_kafka.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="your-cert.crt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Update="templates\topic.datahub.accounts.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="templates\topic.datahub.loyalties.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="templates\topic.datahub.reservations.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="templates\" />
   </ItemGroup>
 
 </Project>
