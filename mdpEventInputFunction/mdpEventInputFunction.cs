@@ -9,22 +9,16 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using EventGrid;
 
 namespace mdpEventInputFunction
 {
-
-
     /// <summary>
-    /// The mdp event input function.
+    /// Target for Sink Connector
     /// </summary>
     public static class MdpEventInputFunction
     {
-        /// <summary>
-        /// Runs the.
-        /// </summary>
-        /// <param name="req">The req.</param>
-        /// <param name="log">The log.</param>
-        /// <returns>A Task.</returns>
+
         [FunctionName("mdpEventInputFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
@@ -34,35 +28,11 @@ namespace mdpEventInputFunction
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
-            var z = @"payload"":""(.*)(?=}})";
-            var regex = new Regex(z, RegexOptions.Multiline | RegexOptions.CultureInvariant | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
+            var x = EG.ExtractMdpObject(requestBody);
 
-            Match m = regex.Match(requestBody);
-            var x = m.Value.Substring(10) + "}}";
-            if (m.Success)
-            {
-                Console.WriteLine(x);
-            }
+            var y = EG.PostToEventGridWithStandartSchema(x,"Sink Connector");
 
-
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri("https://mdptopic.westeurope-1.eventgrid.azure.net/api/events")
-            };
-            client.DefaultRequestHeaders.Add("aeg-sas-key", "2vn2IdoRgG/2a1QNKUdylnThQW1SZ8lwEKq0lawoxDk=");
-
-            var egevent = new
-            {
-                Id = 1234,
-                Subject = "Event dilivered from standalone Kafka",
-                EventType = "Creation",
-                EventTime = DateTime.UtcNow,
-                Data = JsonConvert.DeserializeObject(x)
-            };
-            var x2 = await client.PostAsJsonAsync("", new[] { egevent });
-
-            return new OkObjectResult(x2);
-
+            return new OkObjectResult(y);
         }
     }
 }

@@ -1,9 +1,12 @@
+using EventGrid;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Kafka;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 
 namespace mdpKafkaTriggerFunction
 {
@@ -39,23 +42,9 @@ namespace mdpKafkaTriggerFunction
             {
                 log.LogInformation($"C# Kafka trigger function processed a message: {eventData.Value}");
 
-                var client = new HttpClient()
-                {
-                    BaseAddress = new Uri("https://mdptopic.westeurope-1.eventgrid.azure.net/api/events")
-                };
-                client.DefaultRequestHeaders.Add("aeg-sas-key", "2vn2IdoRgG/2a1QNKUdylnThQW1SZ8lwEKq0lawoxDk=");
+                var x = EG.ExtractMdpObject(eventData.Value);
 
-                var egevent = new
-                {
-                    Id = 1234,
-                    Subject = "Event delivired by KafkaTrigger from Confluent",
-                    EventType = "Creation",
-                    EventTime = DateTime.UtcNow,
-                    Data = eventData
-                };
-                var x2 = client.PostAsJsonAsync("", new[] { egevent }).Result;
-
-             
+                var y = EG.PostToEventGridWithStandartSchema(x, "Kafka Trigger");
             }
         }
     }
