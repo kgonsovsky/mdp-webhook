@@ -1,0 +1,2 @@
+PATH="/c/bin/:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/crun"
+CONFLUENT_HOME="/c"

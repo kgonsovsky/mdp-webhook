@@ -1,0 +1,1 @@
+/c/bin/zookeeper-server-start /c/etc/kafka/zookeeper.properties

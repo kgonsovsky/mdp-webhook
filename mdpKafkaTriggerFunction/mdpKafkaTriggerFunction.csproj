@@ -25,4 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EventGrid\EventGrid.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
 </Project>

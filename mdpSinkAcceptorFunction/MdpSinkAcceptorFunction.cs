@@ -14,12 +14,12 @@ using EventGrid;
 namespace mdpEventInputFunction
 {
     /// <summary>
-    /// Target for Sink Connector
+    /// https://mdpsinkacceptorfunction20220620204529.azurewebsites.net/api/mdpSinkAcceptorFunction?code=c5aEDv2dbBwg-JmsroCbG4FdoeRbnadZftcW6NBC7Q3-AzFutUWPdA==
     /// </summary>
-    public static class MdpEventInputFunction
-    {
+    public static class MdpSinkAcceptorFunction
+    {`
 
-        [FunctionName("mdpEventInputFunction")]
+        [FunctionName("mdpSinkAcceptorFunction")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
@@ -28,9 +28,11 @@ namespace mdpEventInputFunction
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
+            var topic = req.Headers["topic"];
+
             var x = EG.ExtractMdpObject(requestBody);
 
-            var y = EG.PostToEventGridWithStandartSchema(x,"Sink Connector");
+            var y = EG.PostToEventGridWithStandartSchema(x, topic, "Sink Connector");
 
             return new OkObjectResult(y);
         }

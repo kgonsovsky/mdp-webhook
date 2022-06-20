@@ -1,0 +1,31 @@
+{
+  "name": "HttpSink",
+  "config": {
+    "ssl.enabled": "true",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schema.registry.url": "http://localhost:8081",
+    "value.converter.schemas.enable": "false",
+    "name": "HttpSink",
+    "connector.class": "io.confluent.connect.http.HttpSinkConnector",
+    "tasks.max": "1",
+    "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+    "topics": "topic.datahub.reservations,topic.datahub.accounts,topic.datahub.loyalties",
+    "http.api.url": "https://mdpsinkacceptorfunction20220620204529.azurewebsites.net/api/mdpSinkAcceptorFunction?code=c5aEDv2dbBwg-JmsroCbG4FdoeRbnadZftcW6NBC7Q3-AzFutUWPdA==",
+    "https.ssl.key.password": "changeit",
+    "https.ssl.keystore.location": "/crun/file",
+    "https.ssl.keystore.password": "changeit",
+    "https.ssl.truststore.location": "/crun/file",
+    "https.ssl.truststore.password": "changeit",
+    "https.ssl.keystore.type": "JKS",
+    "https.ssl.protocol": "TLSv1.2",
+    "https.ssl.truststore.type": "JKS",
+    "reporter.result.topic.name": "__success",
+    "reporter.result.topic.replication.factor": "1",
+    "reporter.error.topic.name": "__error",
+    "reporter.error.topic.replication.factor": "1",
+    "reporter.bootstrap.servers": "localhost:9092",
+    "confluent.topic.bootstrap.servers": "localhost:9092",
+    "confluent.topic.replication.factor": "1"
+  }
+}

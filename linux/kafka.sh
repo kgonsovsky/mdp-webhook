@@ -1,0 +1,1 @@
+/c/bin/kafka-server-start /c/etc/kafka/server.properties

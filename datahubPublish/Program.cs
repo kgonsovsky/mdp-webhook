@@ -26,8 +26,7 @@ namespace DatahubPublish
 {
     internal class Program
     {
-        internal const int Interval = 5;
-        internal const string Topic = "__mdp";
+        internal const int Interval = 10;
 
         internal static List<ClientConfig> Configs;
 
@@ -40,7 +39,7 @@ namespace DatahubPublish
             var p = Path.GetDirectoryName(configPath) + "/" + Path.GetFileNameWithoutExtension(configPath) + ".pem";
             if (System.IO.File.Exists(p))
             clientConfig.SslCaLocation = p;
-            return clientConfig;
+            return new ClientConfig(cloudConfig);
         }
 
         private static async Task CreateTopicMaybe(string name, int numPartitions, short replicationFactor, ClientConfig cloudConfig)
@@ -109,24 +108,27 @@ namespace DatahubPublish
             }
         }
 
-        /// <summary>
-        /// Mains the.
-        /// </summary>
-        /// <param name="args">The args.</param>
-        /// <returns>A Task.</returns>
+
         private static async Task Main(string[] args)
         {
             Configs = Directory.EnumerateFiles("./configs", "*.txt").Select(a => LoadConfig(a)).ToList();
             foreach (var c in Configs)
             {
-                await CreateTopicMaybe(Topic, 1, 3, c);
+                foreach (var x in Directory.EnumerateFiles("./templates", "*.txt"))
+                {
+                    await CreateTopicMaybe(Path.GetFileNameWithoutExtension(x), 1, 3, c);
+                }
             }
 
             while (true)
             {
                 foreach (var c in Configs)
                 {
-                    Produce(Topic, c);
+                    foreach (var x in Directory.EnumerateFiles("./templates", "*.txt"))
+                    {
+                        Produce(Path.GetFileNameWithoutExtension(x), c);
+                    }
+              
                 }
                 Thread.Sleep(Interval*1000);
             }

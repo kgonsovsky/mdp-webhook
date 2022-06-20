@@ -1,0 +1,12 @@
+systemctl disable czookeeper
+systemctl disable ckafka
+systemctl disable cschema
+systemctl disable crest
+systemctl disable cconnect
+systemctl disable ccenter
+systemctl stop ckafka
+systemctl stop czookeeper
+systemctl stop cschema
+systemctl stop crest
+systemctl stop cconnect
+systemctl stop ccenter

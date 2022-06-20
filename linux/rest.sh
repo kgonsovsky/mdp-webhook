@@ -1,0 +1,1 @@
+/c/bin/kafka-rest-start /c/etc/kafka-rest/kafka-rest.properties
