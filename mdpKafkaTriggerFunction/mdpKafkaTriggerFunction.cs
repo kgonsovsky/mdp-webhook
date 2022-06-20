@@ -43,7 +43,7 @@ namespace mdpKafkaTriggerFunction
                 var egevent = new
                 {
                     Id = 1234,
-                    Subject = "KafkaTrigger",
+                    Subject = "Event delivired by KafkaTrigger from Confluent",
                     EventType = "Creation",
                     EventTime = DateTime.UtcNow,
                     Data = eventData

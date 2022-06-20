@@ -45,7 +45,7 @@ namespace mdpEventInputFunction
             var egevent = new
             {
                 Id = 1234,
-                Subject = "BookingEvent",
+                Subject = "Event dilivered from standalone Kafka",
                 EventType = "Creation",
                 EventTime = DateTime.UtcNow,
                 Data = JsonConvert.DeserializeObject(x)
