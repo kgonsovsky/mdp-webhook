@@ -17,7 +17,7 @@ namespace mdpEventInputFunction
     /// https://mdpsinkacceptorfunction20220620204529.azurewebsites.net/api/mdpSinkAcceptorFunction?code=c5aEDv2dbBwg-JmsroCbG4FdoeRbnadZftcW6NBC7Q3-AzFutUWPdA==
     /// </summary>
     public static class MdpSinkAcceptorFunction
-    {`
+    {
 
         [FunctionName("mdpSinkAcceptorFunction")]
         public static async Task<IActionResult> Run(

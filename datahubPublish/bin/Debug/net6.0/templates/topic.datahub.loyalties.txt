@@ -1,7 +1,0 @@
-{
-"schema":{
-"type":"string"
-"optional":false
-}
-"payload":"{"_id": {"_data": "82627980BC000000042B022C0100296E5A1004C5E23B48037B4B29A46B540A50C6C8B446645F696400646273342E7EF0E6603A1ED1970004"}, "operationType": "replace", "clusterTime": {"$timestamp": {"t": 1652129980, "i": 4}}, "fullDocument": {"_id": {"$oid": "6273342e7ef0e6603a1ed197"}, "masterId": "54727d43-4291-4c76-9ffe-c45de7055540", "isActive": true, "isDeleted": false, "createdBySystem": "CRM", "createdDate": {"$date": 1651717166276}, "modifiedBySystem": null, "modifiedDate": {"$date": 1652101687642}, "version": 3, "mappingFields": {"CRM": {"ad_loyaltyprofileid": "464dfa36-ff5d-e811-a4e8-66e305e87456"}, "VRC": {"_id": "627980bcbf39010de75db3af"}}, "accountId": "83ea8f79-8c87-4ad2-8b2f-2b682247bf10", "status": "34eb20c9-3074-480c-b71d-31b70223bac9", "program": "025c8406-5f34-4413-b7e2-d7752545cd94", "level": "31005a60-ec57-4dc9-b799-c36bf4c016a8", "cardInformation": {"cardNumber": "100108212174", "email": "marlene.jeklic@gmx.at_TEST", "registrationDate": {"$date": 1526947200000}, "expirationDate": {"$date": 1696204800000}, "issued": "2a0bfde2-4970-489e-b7c2-1ab0db16b016", "isClaimed": true, "isPrinted": true}, "pointsData": {"points": 37890, "promoPoints": 0, "pointsAvailable": 37890, "pointsUsed": 0, "pointsReserved": 0, "valueForPoints": "126"}, "levelCalculation": {"levelPoints": 0, "levelNights": 0, "nextLevelPoints": 45000, "nextLevelNights": 20}, "socialNetwork": null}, "ns": {"db": "DataHub", "coll": "loyalties"}, "documentKey": {"_id": {"$oid": "6273342e7ef0e6603a1ed197"}}}"
-}

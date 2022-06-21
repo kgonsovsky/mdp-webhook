@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
 using Newtonsoft.Json.Linq;
+using Azure.Messaging.EventGrid;
+using Azure;
 
 namespace EventGrid
 {
@@ -20,23 +22,18 @@ namespace EventGrid
 
         public static ObjectResult PostToEventGridWithStandartSchema(JObject mdpObject, string topic, string sender)
         {
-            var client = new HttpClient()
-            {
-                BaseAddress = new Uri("https://mdptopic.westeurope-1.eventgrid.azure.net/api/events")
-            };
-            client.DefaultRequestHeaders.Add("aeg-sas-key", "2vn2IdoRgG/2a1QNKUdylnThQW1SZ8lwEKq0lawoxDk=");
-
-            var egevent = new
-            {
-                Id = 1234,
-                Subject = $"{(topic == null ? "null" : topic)} ({sender})",
-                EventType = mdpObject.GetValue("operationType").Value<string>(),
-                EventTime = DateTime.UtcNow,
-                Data = mdpObject
-            };
-            var x2 = client.PostAsJsonAsync("", new[] { egevent }).Result;
-
-            return new OkObjectResult(x2);
+            AzureKeyCredential credential = new AzureKeyCredential("2vn2IdoRgG/2a1QNKUdylnThQW1SZ8lwEKq0lawoxDk=");
+            Uri endpoint = new Uri("https://mdptopic.westeurope-1.eventgrid.azure.net/api/events");
+            EventGridPublisherClient client = new EventGridPublisherClient(endpoint, credential);
+            EventGridEvent firstEvent = new EventGridEvent(
+             subject: $"{(topic == null ? "null" : topic)} ({sender})",
+             eventType: mdpObject.GetValue("operationType").Value<string>(),
+             dataVersion: "1.0",
+             data: mdpObject
+             );
+            var x = client.SendEventAsync(firstEvent).Result;
+            var y = new StreamReader(x.ContentStream).ReadToEnd();
+            return new OkObjectResult(y);
         }
     }
 }

@@ -20,19 +20,19 @@
     <None Update="configs\confluent_kafka.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="templates\topic.datahub.accounts.txt">
+    <None Update="topics\topic.datahub.accounts.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="templates\topic.datahub.loyalties.txt">
+    <None Update="topics\topic.datahub.loyalties.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="templates\topic.datahub.reservations.txt">
+    <None Update="topics\topic.datahub.reservations.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="templates\" />
+    <Folder Include="topics\" />
   </ItemGroup>
 
   <ItemGroup>

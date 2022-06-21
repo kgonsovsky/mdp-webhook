@@ -26,7 +26,7 @@ namespace DatahubPublish
 {
     internal class Program
     {
-        internal const int Interval = 10;
+        internal const int Interval = 30;
 
         internal static List<ClientConfig> Configs;
 
@@ -80,11 +80,8 @@ namespace DatahubPublish
                 {
                     var key = "bookingEvent";
 
-                    var val = System.IO.File.ReadAllText(Directory.EnumerateFiles("./templates", "*.txt")
-                        .OrderBy(a => Guid.NewGuid()).First());
-
-
-
+                    var val = System.IO.File.ReadAllText("./topics/" + topic + ".txt");
+     
                     Console.WriteLine($"Producing record: {key} {val}");
 
                     producer.Produce(topic, new Message<string, string> { Key = key, Value = val },
@@ -114,7 +111,7 @@ namespace DatahubPublish
             Configs = Directory.EnumerateFiles("./configs", "*.txt").Select(a => LoadConfig(a)).ToList();
             foreach (var c in Configs)
             {
-                foreach (var x in Directory.EnumerateFiles("./templates", "*.txt"))
+                foreach (var x in Directory.EnumerateFiles("./topics", "*.txt"))
                 {
                     await CreateTopicMaybe(Path.GetFileNameWithoutExtension(x), 1, 3, c);
                 }
@@ -124,7 +121,7 @@ namespace DatahubPublish
             {
                 foreach (var c in Configs)
                 {
-                    foreach (var x in Directory.EnumerateFiles("./templates", "*.txt"))
+                    foreach (var x in Directory.EnumerateFiles("./topics", "*.txt"))
                     {
                         Produce(Path.GetFileNameWithoutExtension(x), c);
                     }
