@@ -1,11 +1,20 @@
-### Demo for mdp webhook proposal.
+M D P   W E B H O O K   P R O P O S A L.
 
-### Kafka settings in the /configs folder
-### Settings of topics in the /topics folder
+* Kafka settings in the /configs folder
+* Settings of topics in the /topics folder
 
-### Project structure
+Project structure
 
+- dataHubublish. Put events to Kafka topic
 
-The application is pre-configured with 2 independently running kafka servers. One of them is located in Confluent Cloud and running under Azure Kafka Trigger, the other is on a VPS and running under Sink Connector and Azure Function. The source codes and settings for the Event Grid are in the respective projects. Application transform message before send it to client.
+- mdpKafkaTriggerFunction. Listen for Kafka inside of Azure and post message to Azure Event Grids
 
-Active subscriber: https://mdpwebhooksite.azurewebsites.net/
+- mdpSinkAccpetorFunction. Pushed by Kafka when new message posted to topic and post message to Azure Event Grids
+
+- subscriberRest. Example of stand alone RestApi client for EventGrid.
+
+- subscriberServiceBusQueueTrigger. Example of client via Service Bus Queue (RabbitMQ)
+
+- subscriberEventGrid. Example of client EventGrid to EventGrid.
+
+Run publisher, goto your azure account, check for activity: https://mdpwebhooksite.azurewebsites.net/
