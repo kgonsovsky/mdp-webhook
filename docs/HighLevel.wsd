@@ -61,42 +61,48 @@ or
 end note
 
 
-    component transformer as "Transformer"{
 
-    }
-    component api as "WebHook API"{
-        stack su1 as "subscription #1" {
-
-        }
-
-        stack suN as "subscription #N" {
-
-        }
-    }
-
-
-note right of api #Yellow
-- Azure Data Grid
-or
-- Custom Solution
-end note
-
-    component del as "HTTP Delivery"{
+    component del as "Event Delivery"{
         
     }
 
-    note right of del #Yellow
-- Azure Data Grid
-or
-- Custom Solution
-end note
+
+
 }
 
 loy --> disp
 acc --> disp
 res --> disp
 
-disp -right-> transformer: Envelope event to webhook
-transformer --> del: Send event to Delivery subsystem
-del --> su1: Send event to end consumer
-del --> suN: Send event to end consumer
+disp -right-> del: Add sequence number
+
+      queue topic as "Topic"{
+        
+    }
+
+       component transformer as "Transformer"{
+        
+    }
+
+    transformer --> topic
+
+del --> transformer
+
+actor Subscription
+
+
+
+Subscription --> topic
+
+'     collections transformer as "Transformers"
+
+
+'     collections subscription as "Subcriptions"
+
+'     del-->transformer
+
+' transformer --> topic
+' topic --> subscription
+
+' ' transformer --> su1: Send event to end consumer
+' ' transformer --> suN: Send event to end consumer
