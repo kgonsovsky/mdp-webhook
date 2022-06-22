@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "UqEAQ2crvV96G1zv+TbtZpK4Ppog2fvzICw5WXzYOXQ=",
+  "Source": "subscriberRest",
+  "BasePath": "_content/subscriberRest",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

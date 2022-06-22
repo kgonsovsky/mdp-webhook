@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using EventGrid;
 
-namespace mdpEventInputFunction
+namespace mdpSinkAcceptorFunction
 {
     /// <summary>
     /// https://mdpsinkacceptorfunction20220620204529.azurewebsites.net/api/mdpSinkAcceptorFunction?code=c5aEDv2dbBwg-JmsroCbG4FdoeRbnadZftcW6NBC7Q3-AzFutUWPdA==

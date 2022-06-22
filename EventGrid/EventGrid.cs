@@ -28,6 +28,7 @@ namespace EventGrid
         {
             AzureKeyCredential credential = new AzureKeyCredential("2vn2IdoRgG/2a1QNKUdylnThQW1SZ8lwEKq0lawoxDk=");
             Uri endpoint = new Uri("https://mdptopic.westeurope-1.eventgrid.azure.net/api/events");
+
             EventGridPublisherClient client = new EventGridPublisherClient(endpoint, credential);
             EventGridEvent firstEvent = new EventGridEvent(
              subject: $"{(topic == null ? "null" : topic)} ({sender})",

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "2F0afpkq3DG+vgWQjnNEJPx7wBjJD6Osj3NkW9I4W6ccbtFpSNwEne+FZrgWXzIwWWExaFWgzHR236+WtbKWdQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\subscriberRest\\subscriberRest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
