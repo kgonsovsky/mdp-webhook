@@ -39,7 +39,7 @@ namespace EGManageTopicsAndEventSubscriptions
         const string ResourceGroupName = "mdpwebhookgroup";
 
         // Using a random topic name. Optionally, replace this with a topic name of your choice.
-        static readonly string TopicName = "deadletter";
+        static readonly string TopicName = "mdptopic";
 
         // Replace the endpoint URL with the URL of your Azure function.
         // See the EventGridConsumer sample for a sample of an Azure function that can handle EventGridEvents
@@ -53,8 +53,12 @@ namespace EGManageTopicsAndEventSubscriptions
         // Creating the service principal will generate the values you need to specify for the constants below.
 
         // Use the values generated when you created the Azure service principal.
-        const string ApplicationId = "2b1f4208-4a2d-464d-a94c-eee7139bbf46";
-        const string Password = "_SO8Q~oNA6H5dXi8EZdGDQ9zIVP7TpQoptSiodin";
+        //const string ApplicationId = "2b1f4208-4a2d-464d-a94c-eee7139bbf46";
+        //const string Password = "_SO8Q~oNA6H5dXi8EZdGDQ9zIVP7TpQoptSiodin";
+        //const string TenantId = "ed925669-c818-463b-bd8e-5bcb7131f38d";
+
+        const string ApplicationId = "3aecbd22-976f-4dc5-990c-a7ce6d7f7a02";
+        const string Password = "D6W8Q~z8PEpuRExiadLFo~Qsq~.T6xb0yDKJAaSd";
         const string TenantId = "ed925669-c818-463b-bd8e-5bcb7131f38d";
 
         const string EventSubscriptionName = "deadSubscription";
