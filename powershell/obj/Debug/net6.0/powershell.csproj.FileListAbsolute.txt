@@ -1,0 +1,12 @@
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\bin\Debug\net6.0\powershell.deps.json
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\bin\Debug\net6.0\powershell.dll
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\bin\Debug\net6.0\powershell.pdb
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\powershell.csproj.AssemblyReference.cache
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\powershell.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\powershell.AssemblyInfoInputs.cache
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\powershell.AssemblyInfo.cs
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\powershell.csproj.CoreCompileInputs.cache
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\powershell.dll
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\refint\powershell.dll
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\powershell.pdb
+C:\Users\Administrator\source\repos\mdp-webhook\powershell\obj\Debug\net6.0\ref\powershell.dll

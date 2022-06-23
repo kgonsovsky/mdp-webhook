@@ -17,4 +17,8 @@ Project structure
 
 - subscriberEventGrid. Example of client EventGrid to EventGrid.
 
+- dead-create. Create event subscriptions with dead-letter destinations and retry policies.
+
+- dead-processor.
+
 Run publisher, goto your azure account, check for activity: https://mdpwebhooksite.azurewebsites.net/
