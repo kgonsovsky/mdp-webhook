@@ -26,8 +26,8 @@ namespace EventGrid
 
         public static ObjectResult PostToEventGridWithStandartSchema(JsonObject mdpObject, string topic, string sender)
         {
-            AzureKeyCredential credential = new AzureKeyCredential("2vn2IdoRgG/2a1QNKUdylnThQW1SZ8lwEKq0lawoxDk=");
-            Uri endpoint = new Uri("https://mdptopic.westeurope-1.eventgrid.azure.net/api/events");
+            AzureKeyCredential credential = new AzureKeyCredential("4t/ob3GWcTB0BAmaVZX/zkS6uOh7WdDrD+FFrLjUYEE=");
+            Uri endpoint = new Uri("https://test-event-grid-mdp-topic.westeurope-1.eventgrid.azure.net/api/events");
 
             EventGridPublisherClient client = new EventGridPublisherClient(endpoint, credential);
             EventGridEvent firstEvent = new EventGridEvent(

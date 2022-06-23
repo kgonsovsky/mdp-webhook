@@ -12,7 +12,7 @@ namespace mdpKafkaTriggerFunction
 {
     public class MdpKafkaTriggerFunction
     {
-        [FunctionName("mdpKafkaTriggerFunctionAccounts")]
+        [FunctionName("test-event-grid-mdp-kafka-trigger-accounts")]
         public void RunAccounts(
             [KafkaTrigger("pkc-epwny.eastus.azure.confluent.cloud:9092BrokerList",
                           "topic.datahub.accounts",
@@ -26,7 +26,7 @@ namespace mdpKafkaTriggerFunction
             Trigger.Run(events, log);
         }
 
-        [FunctionName("mdpKafkaTriggerFunctionLoyalties")]
+        [FunctionName("test-event-grid-mdp-kafka-trigger-loyalties")]
         public void RunLoyalties(
             [KafkaTrigger("pkc-epwny.eastus.azure.confluent.cloud:9092BrokerList",
                           "topic.datahub.loyalties",
@@ -40,7 +40,7 @@ namespace mdpKafkaTriggerFunction
             Trigger.Run(events, log);
         }
 
-        [FunctionName("mdpKafkaTriggerFunctionReservations")]
+        [FunctionName("test-event-grid-mdp-kafka-trigger-reservations")]
         public void RunReservations(
             [KafkaTrigger("pkc-epwny.eastus.azure.confluent.cloud:9092BrokerList",
                           "topic.datahub.reservations",

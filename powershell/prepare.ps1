@@ -9,6 +9,7 @@
 
 Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
 Install-Module -Name Az.EventGrid -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
+Import-Module Az
 Login-AzureRMLogin
 Save-AzureRmContext -Path "C:\AzureProfile.json"
 Import-AzureRmContext -Path "C:\AzureProfile.json"

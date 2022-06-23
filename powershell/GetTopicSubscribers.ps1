@@ -7,24 +7,20 @@
 #https://medium.com/microsoftazure/azure-event-grid-the-whole-story-4b7b4ec4ad23
 #https://github.com/MicrosoftDocs/azure-docs/issues/60595
 #https://docs.microsoft.com/en-us/azure/azure-monitor/essentials/rest-api-walkthrough
-
 #https://docs.nodinite.com/Documentation/LoggingAndMonitoring%2FAzure?doc=/Features/Event%20Grid/Monitoring%20Event%20Grid#fa-border-right-event-grid-topic-subscription
-
 #https://docs.microsoft.com/en-us/samples/azure-samples/event-grid-dotnet-handle-deadlettered-events/event-grid-dotnet-handle-deadlettered-events/
-
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Import-Module Az
-Import-Module Az.EventGrid
-Import-AzureRmContext -Path "C:\azure.txt"
 #Connect-AzAccount  -ResourceGroup mdpwebhookgroup
 #https://github.com/Azure-Samples/event-grid-dotnet-handle-deadlettered-events/blob/master/event-subscription-with-dead-lettering/Program.cs
 
-$containername = "testcontainer"
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+#Save-AzureRmContext -Path "C:\azure.txt"
 
-$topicid = (Get-AzEventGridTopic -ResourceGroupName gridResourceGroup -Name demoTopic).Id
-$storageid = (Get-AzStorageAccount -ResourceGroupName gridResourceGroup -Name demostorage).Id
-echo $topicid
-echo $storageid
+Import-AzureRmContext -Path "C:\azure.txt"
+$cred = Get-Credential
+Login-AzureRmAccount –Credential $cred
+Import-Module Az.Resources
+
+
 
 foreach ($res in Get-AzResourceGroup)
 {

@@ -14,7 +14,7 @@ using EventGrid;
 namespace mdpSinkAcceptorFunction
 {
     /// <summary>
-    /// https://mdpsinkacceptorfunction20220620204529.azurewebsites.net/api/mdpSinkAcceptorFunction?code=c5aEDv2dbBwg-JmsroCbG4FdoeRbnadZftcW6NBC7Q3-AzFutUWPdA==
+    /// https://test-event-grid-mdp-kafka-sinik-trigger.azurewebsites.net/api/mdpSinkAcceptorFunction?code=ocniAZFiF2zFb4y9JPElY4dqSS5jRo5DkmjKW_xENN5aAzFuVPgVEA==
     /// </summary>
     public static class MdpSinkAcceptorFunction
     {
