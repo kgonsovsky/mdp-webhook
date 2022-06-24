@@ -35,9 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "powershell", "powershell\po
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "deadProcessorFunction", "deadProcessorFunction\deadProcessorFunction.csproj", "{B96B39BF-EF59-47DE-B9AF-9E8A7D1B6D09}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "deadSubscription", "deadSubscription\deadSubscription.csproj", "{CE3AC25C-855C-4858-B1BF-CA400EA22CD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "deadTopicCreator", "deadTopicCreator\deadTopicCreator.csproj", "{2B60FBFC-D7F4-4172-AEEA-63C7920390A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "deadTopicCreator", "deadTopicCreator\deadTopicCreator.csproj", "{2B60FBFC-D7F4-4172-AEEA-63C7920390A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "deadTriggerFunction", "deadTriggerFunction\deadTriggerFunction.csproj", "{B5DFC9D5-8B17-4250-901E-C306FC9CCF72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,14 +81,14 @@ Global
 		{B96B39BF-EF59-47DE-B9AF-9E8A7D1B6D09}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B96B39BF-EF59-47DE-B9AF-9E8A7D1B6D09}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B96B39BF-EF59-47DE-B9AF-9E8A7D1B6D09}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE3AC25C-855C-4858-B1BF-CA400EA22CD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE3AC25C-855C-4858-B1BF-CA400EA22CD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE3AC25C-855C-4858-B1BF-CA400EA22CD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE3AC25C-855C-4858-B1BF-CA400EA22CD0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2B60FBFC-D7F4-4172-AEEA-63C7920390A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2B60FBFC-D7F4-4172-AEEA-63C7920390A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B60FBFC-D7F4-4172-AEEA-63C7920390A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B60FBFC-D7F4-4172-AEEA-63C7920390A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5DFC9D5-8B17-4250-901E-C306FC9CCF72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5DFC9D5-8B17-4250-901E-C306FC9CCF72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5DFC9D5-8B17-4250-901E-C306FC9CCF72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5DFC9D5-8B17-4250-901E-C306FC9CCF72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

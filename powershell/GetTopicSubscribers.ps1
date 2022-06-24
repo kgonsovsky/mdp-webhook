@@ -12,14 +12,21 @@
 #Connect-AzAccount  -ResourceGroup mdpwebhookgroup
 #https://github.com/Azure-Samples/event-grid-dotnet-handle-deadlettered-events/blob/master/event-subscription-with-dead-lettering/Program.cs
 
+#https://github.com/Azure-Samples/event-grid-dotnet-publish-consume-events/blob/master/EGManageTopicsAndEventSubscriptions/EGManageTopicsAndEventSubscriptions/Program.cs
+#Account          : gonsovskii.konstantin@coderhuddle.com
+#SubscriptionName : Valamar Riviera
+#SubscriptionId   : fb0de01f-ba59-4fba-bb03-be345a469de6
+#TenantId         : c7223f2c-1ba2-43c8-be7f-57e6e1465036
+
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-#Save-AzureRmContext -Path "C:\azure.txt"
 
-Import-AzureRmContext -Path "C:\azure.txt"
-$cred = Get-Credential
-Login-AzureRmAccount –Credential $cred
-Import-Module Az.Resources
 
+$username = "gonsovskii.konstantin@coderhuddle.com"
+$SecurePassword = Get-Content "C:\password.txt" | ConvertTo-SecureString
+$cred = new-object -typename System.Management.Automation.PSCredential `
+     -argumentlist $username, $SecurePassword
+
+Login-AzureRmAccount -Credential $cred
 
 
 foreach ($res in Get-AzResourceGroup)

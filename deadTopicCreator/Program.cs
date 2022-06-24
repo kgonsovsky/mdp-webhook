@@ -33,13 +33,13 @@ namespace EGManageTopicsAndEventSubscriptions
     public class Program
     {
         // Enter the Azure subscription ID you want to use for this sample.
-        const string SubscriptionId = "6d9652ae-29d4-471b-9bf4-e23ddaaeb05a";
+        const string SubscriptionId = "5258beac-d2a1-4e36-8e1b-2d1fbe17450f";
 
         // Specify a resource group name of your choice. Specifying a new value will create a new resource group.
-        const string ResourceGroupName = "mdpwebhookgroup";
+        const string ResourceGroupName = "test-rg-mdp-webhook";
 
         // Using a random topic name. Optionally, replace this with a topic name of your choice.
-        static readonly string TopicName = "mdptopic";
+        static readonly string TopicName = "test-event-grid-mdp-topic";
 
         // Replace the endpoint URL with the URL of your Azure function.
         // See the EventGridConsumer sample for a sample of an Azure function that can handle EventGridEvents
