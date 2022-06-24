@@ -19,7 +19,7 @@ using Newtonsoft.Json.Linq;
 namespace deadTriggerFunction
 {
     /// <summary>
-    /// https://test-event-grid-mdp-subscriber-dead.azurewebsites.net/api/deadTriggerFunction?code=jLlhMNj2mh12Qa2rHv7kdmYBUutHVBncLAucQmInBTC9AzFuOh-70Q==
+    /// https://test-event-grid-mdp-subscriber-dead.azurewebsites.net/api/deadTriggerFunction?code=https://test-event-grid-mdp-subscriber-dead.azurewebsites.net/api/deadTriggerFunction?code=4f5Q7cLMpijlByO7nzP7c3hv0wK4e6e2NQguIloiWA4cAzFurtiTWg==
     /// </summary>
     public static class DeadTriggerFunction
     {

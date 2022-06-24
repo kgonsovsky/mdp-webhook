@@ -36,6 +36,8 @@ namespace subscriberRest.Controllers
                 }
                 else if (EventTypeNotification)
                 {
+                    return BadRequest("Bad Request");
+
                     if (IsCloudEvent(jsonContent))
                     {
                         return await HandleCloudEvent(jsonContent);

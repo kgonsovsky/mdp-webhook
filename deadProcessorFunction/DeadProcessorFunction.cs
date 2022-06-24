@@ -1,35 +1,38 @@
 // This is the default URL for triggering event grid function in the local environment.
 // http://localhost:7071/admin/extensions/EventGridExtensionConfig?functionName={functionname} 
 
-using System;
-using System.Net;
-using System.IO;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.EventGrid;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using Azure.Messaging.EventGrid;
-using Azure.Messaging.EventGrid.SystemEvents;
 using Microsoft.Extensions.Logging;
-
+using Azure.Messaging.EventGrid;
+using System;
+using Azure.Messaging.EventGrid.SystemEvents;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace DeadLetterSample
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class DeadProcessorFunction
     {
         [FunctionName("deadProcessorFunction")]
-        public static void Run([EventGridTrigger]EventGridEvent eventGridEvent, ILogger logger)
+        public static void Run([EventGridTrigger] EventGridEvent eventGridEvent, ILogger logger)
         {
             logger.LogInformation($"C# Event grid trigger function has begun...");
             const string StorageBlobCreatedEvent = "Microsoft.Storage.BlobCreated";
 
-            logger.LogInformation($"Print EventGridEvent Event attributes for Data: {eventGridEvent.Data.ToString()}, Id: {eventGridEvent.Id}, Topic: {eventGridEvent.Topic}, Subject: {eventGridEvent.Subject}, EventType: {eventGridEvent.EventType}, DataVersion: {eventGridEvent.DataVersion}, EventTime: {eventGridEvent.EventTime.ToString()}");
+
+         logger.LogInformation($"Print EventGridEvent Event attributes for Id: {eventGridEvent.Id}, Topic: {eventGridEvent.Topic}, Subject: {eventGridEvent.Subject}, EventType: {eventGridEvent.EventType}, DataVersion: {eventGridEvent.DataVersion}, EventTime: {eventGridEvent.EventTime}");
+
 
             if (string.Equals(eventGridEvent.EventType, StorageBlobCreatedEvent, StringComparison.OrdinalIgnoreCase))
             {
                 logger.LogInformation("Received blob created event..");
                 StorageBlobCreatedEventData data = eventGridEvent.Data.ToObjectFromJson<StorageBlobCreatedEventData>();
-                logger.LogInformation($"Dead Letter Blob Url:{data.Url}");
+                logger.LogInformation($"Dead Letter Blob Url:{data.Url}, {data.Sequencer}, {data.Identity}, {data.RequestId}, {data.ClientRequestId}, {data.Api}, {data.ETag}");
                 logger.LogInformation("Reading blob data from storage account..");
                 ProcessBlob(data.Url, logger);
             }
@@ -43,8 +46,10 @@ namespace DeadLetterSample
         {
 
             // sas key generated through the portal for your storage account used for authentication
-            const string sasKey = "ZQgMXSm2TPBX3SOKMuoSVcNfYy0Z8SGmG4J+4/N1ch9Z9f4yj2Rz8Enc8miRk5Wf/05KR7oZOhtF+AStpUMIXQ==";
+            const string sasKey = "9PRqQZcO2T9o6Z68oyiDGQ79LDY9FU0uW%2FOtkYvPIxo%3D";
             string uri = url + sasKey;
+
+            logger.LogInformation($"url: {url}");
 
             WebClient client = new WebClient();
 
@@ -60,6 +65,7 @@ namespace DeadLetterSample
             DeadLetterEvent[] dlEvents = JsonConvert.DeserializeObject<DeadLetterEvent[]>(blob);
 
             foreach (DeadLetterEvent dlEvent in dlEvents) {
+       
                 logger.LogInformation($"Printing Dead Letter Event attributes for EventId: {dlEvent.Id}, Dead Letter Reason:{dlEvent.DeadLetterReason}, DeliveryAttempts:{dlEvent.DeliveryAttempts}, LastDeliveryOutcome:{dlEvent.LastDeliveryOutcome}, LastHttpStatusCode:{dlEvent.LastHttpStatusCode}");
                 // TODO: steps for processing the dead letter event further
             }

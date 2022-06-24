@@ -16,12 +16,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.Azure.Management.EventGrid;
 using Microsoft.Azure.Management.EventGrid.Models;
 using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Microsoft.Azure.Management.ResourceManager;
 using Microsoft.Azure.Management.ResourceManager.Models;
 using Microsoft.Rest;
+using Microsoft.Azure.Management.EventGrid;
 
 namespace EGManageTopicsAndEventSubscriptions
 {
@@ -57,15 +57,15 @@ namespace EGManageTopicsAndEventSubscriptions
         //const string Password = "_SO8Q~oNA6H5dXi8EZdGDQ9zIVP7TpQoptSiodin";
         //const string TenantId = "ed925669-c818-463b-bd8e-5bcb7131f38d";
 
-        const string ApplicationId = "3aecbd22-976f-4dc5-990c-a7ce6d7f7a02";
-        const string Password = "D6W8Q~z8PEpuRExiadLFo~Qsq~.T6xb0yDKJAaSd";
-        const string TenantId = "ed925669-c818-463b-bd8e-5bcb7131f38d";
+        const string ApplicationId = "d105bb3d-cfe5-4acf-a3bf-450e46a9209f";
+        const string Password = "Aru8Q~Ddc3n2yGxF3CUwGq6qyouej3QLWlELIcEN";
+        const string TenantId = "c7223f2c-1ba2-43c8-be7f-57e6e1465036";
 
-        const string EventSubscriptionName = "deadSubscription";
-        const string DefaultLocation = "westus";
+        const string EventSubscriptionName = "test-event-grid-mdp-subscription-dead";
+        const string DefaultLocation = "westeurope";
 
         // An example would be /subscriptions/{subid}/resourceGroups/{rg}/providers/Microsoft.Storage/storageAccounts/{storageAccount}
-        const string DeadLetterDestinationResourceId = "/subscriptions/6d9652ae-29d4-471b-9bf4-e23ddaaeb05a/resourceGroups/DefaultResourceGroup-CUS/providers/Microsoft.Storage/storageAccounts/deadstorage/blobServices/default";
+        const string DeadLetterDestinationResourceId = "/subscriptions/5258beac-d2a1-4e36-8e1b-2d1fbe17450f/resourceGroups/test-rg-mdp-webhook/providers/Microsoft.Storage/storageAccounts/testmdpwebhookstorage/blobServices/default";
         const string StorageBlobContainerName = "deadcontainer";
 
         //The following method will enable you to use the token to create credentials
@@ -211,8 +211,20 @@ namespace EGManageTopicsAndEventSubscriptions
                 }
             };
 
-            EventSubscription createdEventSubscription = await eventGridMgmtClient.EventSubscriptions.CreateOrUpdateAsync(eventSubscriptionScope, eventSubscriptionName, eventSubscription);
-            Console.WriteLine("EventGrid event subscription created with name " + createdEventSubscription.Name);
+
+         try
+            {
+                EventSubscription createdEventSubscription = await eventGridMgmtClient.EventSubscriptions.CreateOrUpdateAsync(eventSubscriptionScope, eventSubscriptionName, eventSubscription);
+                Console.WriteLine("EventGrid event subscription created with name " + createdEventSubscription.Name);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+
+                Console.WriteLine(e.StackTrace);
+            }
+
+           
         }
     }
 }

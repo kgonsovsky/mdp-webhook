@@ -20,13 +20,16 @@
 
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
+Import-Module Az.Resources
 
-$username = "gonsovskii.konstantin@coderhuddle.com"
-$SecurePassword = Get-Content "C:\password.txt" | ConvertTo-SecureString
-$cred = new-object -typename System.Management.Automation.PSCredential `
-     -argumentlist $username, $SecurePassword
+$clientID = "d105bb3d-cfe5-4acf-a3bf-450e46a9209f"  
+$key = "Aru8Q~Ddc3n2yGxF3CUwGq6qyouej3QLWlELIcEN"
+$tenant="c7223f2c-1ba2-43c8-be7f-57e6e1465036"
+$SecurePassword = $key | ConvertTo-SecureString -AsPlainText -Force 
+$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $clientID, $SecurePassword
 
-Login-AzureRmAccount -Credential $cred
+# login non-interactive
+Login-AzureRmAccount -Credential $cred -ServicePrincipal -Tenant $tenant 
 
 
 foreach ($res in Get-AzResourceGroup)

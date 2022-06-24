@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "mdpDeadStorageHandler": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7232",
+      "launchBrowser": false
+    }
+  }
+}

@@ -77,3 +77,6 @@ C:\Users\Administrator\source\repos\mdp-webhook\deadTopicCreator\obj\Debug\net6.
 C:\Users\Administrator\source\repos\mdp-webhook\deadTopicCreator\obj\Debug\net6.0\ref\deadTopicCreator.dll
 C:\Users\Administrator\source\repos\mdp-webhook\deadTopicCreator\bin\Debug\net6.0\host.json
 C:\Users\Administrator\source\repos\mdp-webhook\deadTopicCreator\bin\Debug\net6.0\local.settings.json
+C:\Users\Administrator\source\repos\mdp-webhook\deadTopicCreator\bin\Debug\net6.0\Azure.Core.dll
+C:\Users\Administrator\source\repos\mdp-webhook\deadTopicCreator\bin\Debug\net6.0\Azure.Messaging.EventGrid.dll
+C:\Users\Administrator\source\repos\mdp-webhook\deadTopicCreator\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
