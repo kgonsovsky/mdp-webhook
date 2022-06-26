@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using System.Net.Http.Json;
-using Newtonsoft.Json.Linq;
 using Azure.Messaging.EventGrid;
 using Azure;
 using System.Text.Json.Nodes;

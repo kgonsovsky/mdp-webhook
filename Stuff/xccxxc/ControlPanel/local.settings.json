@@ -1,0 +1,31 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_EXTENSION_VERSION": "~4",
+    "prefix": "test-subscription-",
+    "REMOTEDEBUGGINGVERSION": "16.0.30709.132",
+    "WEBSITE_SITE_NAME": "test-event-grid-mdp-controlpanel",
+    "FUNCTIONS_WORKER_RUNTIME": "powershell",
+    "WEBSITE_AUTH_AUTO_AAD": "False",
+    "WEBSITE_AUTH_ENABLED": "False",
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=testmdpwebhookstorage;AccountKey=tUwiEHX7Ckm0qViVwZ9j71GtobBuX5LpcRGCuOury2Noo/JWoEnupm5fy96L9wMALH1z5+KnPGY4+AStaik+Ew==;EndpointSuffix=core.windows.net",
+    "ScmType": "None",
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "f6b646a8-ad33-46d4-8ba4-1aeb998d8520",
+    "FUNCTIONS_RUNTIME_SCALE_MONITORING_ENABLED": "0",
+    "WEBSITE_AUTH_LOGOUT_PATH": "/.auth/logout",
+    "WEBSITE_SLOT_NAME": "Production",
+    "resourceGroup": "test-rg-mdp-webhook",
+    "appSecret": "Aru8Q~Ddc3n2yGxF3CUwGq6qyouej3QLWlELIcEN",
+    "storage": "testmdpwebhookstorage",
+    "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=f6b646a8-ad33-46d4-8ba4-1aeb998d8520;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/",
+    "FUNCTIONS_WORKER_RUNTIME_VERSION": "~7",
+    "WEBSITE_RUN_FROM_PACKAGE": "0",
+    "suffix": "-mdp",
+    "appId": "d105bb3d-cfe5-4acf-a3bf-450e46a9209f",
+    "topic": "test-event-grid-mdp-topic",
+    "deadcontainer": "deadcontainer",
+    "subscriptionId": "5258beac-d2a1-4e36-8e1b-2d1fbe17450f",
+    "tenantId": "c7223f2c-1ba2-43c8-be7f-57e6e1465036",
+    "deadstorage": "testmdpwebhookstorage2"
+  }
+}
