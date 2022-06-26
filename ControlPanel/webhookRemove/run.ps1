@@ -12,7 +12,6 @@ $securePassword = $env:appSecret | ConvertTo-SecureString -AsPlainText -Force
 $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist  $env:appId, $securePassword
 Connect-AzAccount -Credential $cred -ServicePrincipal -Tenant $env:tenantId
 
-
 # subscriptionName
 $subscriptionName = $Request.Query.subscriptionName
 if (-not $subscriptionName) {
@@ -29,7 +28,7 @@ if (-not $subscriptionName) {
     $subscriptionName = $env:prefix + $subscriptionName + $env:suffix
     Write-Host "Createing subscription ${subscriptionName} with endpint ${endPoint}..."
 
-    $body = Remove-AzEventGridSubscription -ResourceGroupName $c:resourceGroup -TopicName $env:topic -EventSubscriptionName $subscriptionName
+    $body = Remove-AzEventGridSubscription -ResourceGroupName $env:resourceGroup -TopicName $env:topic -EventSubscriptionName $subscriptionName
 }
 
 # return
