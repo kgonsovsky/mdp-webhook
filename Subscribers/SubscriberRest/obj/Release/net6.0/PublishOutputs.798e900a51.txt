@@ -1,0 +1,12 @@
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\SubscriberRest.exe
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\appsettings.json
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\home\index.html
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\home\mdp.png
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\partner\index.html
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\partner\mdp.png
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\SubscriberRest.dll
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\SubscriberRest.deps.json
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\SubscriberRest.runtimeconfig.json
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\SubscriberRest.pdb
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll

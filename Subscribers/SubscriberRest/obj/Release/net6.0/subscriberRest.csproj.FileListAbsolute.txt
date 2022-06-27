@@ -45,3 +45,7 @@ C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\R
 C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\SubscriberRest.pdb
 C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\SubscriberRest.genruntimeconfig.cache
 C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\obj\Release\net6.0\ref\SubscriberRest.dll
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\bin\Release\net6.0\partner\index.html
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\bin\Release\net6.0\partner\mdp.png
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\bin\Release\net6.0\home\index.html
+C:\Users\Administrator\source\repos\mdp-webhook\Subscribers\SubscriberRest\bin\Release\net6.0\home\mdp.png
