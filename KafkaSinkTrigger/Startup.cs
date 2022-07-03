@@ -12,7 +12,7 @@ namespace KafkaSinkTrigger
     {
         public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
         {
-            string cs = Environment.GetEnvironmentVariable("MdpSettings");
+            string cs = Environment.GetEnvironmentVariable("mdpSettings");
             builder.ConfigurationBuilder.AddAzureAppConfiguration(cs);
         }
 

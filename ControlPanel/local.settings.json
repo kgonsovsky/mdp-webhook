@@ -26,5 +26,6 @@
     "deadstorage": "testmdpwebhookstorage2",
     "defaultTopic": "test-event-grid-mdp-topic",
     "WEBSITE_RUN_FROM_PACKAGE": "0"
+    "mdpSettings": "Endpoint=https://test-mdp-webhook-configuration.azconfig.io;Id=nDai-l9-s0:R9DAeTrnXj1W1RD0I1Lg;Secret=SHtAmYIu+usl/IacZVqhmoULwn/F15Xl7tdkjePOC3s="
   }
 }
