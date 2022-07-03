@@ -1,8 +1,8 @@
 {
   "Version": 1,
-  "Hash": "UqEAQ2crvV96G1zv+TbtZpK4Ppog2fvzICw5WXzYOXQ=",
-  "Source": "subscriberRest",
-  "BasePath": "_content/subscriberRest",
+  "Hash": "ZSOl+sTdYGgKY04/RiLjollUsyYBbVNn4IQXuLeWags=",
+  "Source": "SubscriberRest",
+  "BasePath": "_content/SubscriberRest",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],

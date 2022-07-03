@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\KafkaSinkTrigger"
   ],
   "SelectedNode": "\\mdp-webhook.sln",
   "PreviewInSolutionExplorer": false

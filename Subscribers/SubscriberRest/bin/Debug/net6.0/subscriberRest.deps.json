@@ -6,12 +6,12 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "subscriberRest/1.0.0": {
+      "SubscriberRest/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1"
         },
         "runtime": {
-          "subscriberRest.dll": {}
+          "SubscriberRest.dll": {}
         }
       },
       "Newtonsoft.Json/13.0.1": {
@@ -25,7 +25,7 @@
     }
   },
   "libraries": {
-    "subscriberRest/1.0.0": {
+    "SubscriberRest/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

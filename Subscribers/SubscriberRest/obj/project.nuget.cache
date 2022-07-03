@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "izDuXCXI3wtBbIj/e/aZ1W5IqYfZVtNQJvJLmufD93xXhrNI+aWtIwRvOF+f5K2qGgSoRG0sGQ6jd9J5isR4Mg==",
+  "dgSpecHash": "DVUPWzxZNljgmans1t+Ok6gjAG1DmR/tDwYH0991GmNE5BM227x5EklBF1CtRQ6I0qiRMTA+OS5Af5MAhwwlGg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj",
+  "projectFilePath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],

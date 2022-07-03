@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaSinkTrigger", "KafkaSi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KafkaTrigger", "KafkaTrigger\KafkaTrigger.csproj", "{5C633626-355E-43F4-AD69-0D84859429E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Powershell", "Powershell\Powershell.csproj", "{DEA10AE3-8E52-4B0C-8BD5-1F083985CD8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{5C633626-355E-43F4-AD69-0D84859429E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5C633626-355E-43F4-AD69-0D84859429E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5C633626-355E-43F4-AD69-0D84859429E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEA10AE3-8E52-4B0C-8BD5-1F083985CD8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEA10AE3-8E52-4B0C-8BD5-1F083985CD8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEA10AE3-8E52-4B0C-8BD5-1F083985CD8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEA10AE3-8E52-4B0C-8BD5-1F083985CD8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

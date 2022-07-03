@@ -1,8 +1,0 @@
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\subscriberRest.exe
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\appsettings.Development.json
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\appsettings.json
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\subscriberRest.dll
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\subscriberRest.deps.json
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\subscriberRest.runtimeconfig.json
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\subscriberRest.pdb
-C:\Users\Administrator\source\repos\mdp-webhook\subscriberRest\obj\Release\net6.0\PubTmp\Out\Newtonsoft.Json.dll

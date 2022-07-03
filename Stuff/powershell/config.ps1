@@ -18,19 +18,3 @@ $Global:suffix = "-mdp"
 $securePassword = $appSecret | ConvertTo-SecureString -AsPlainText -Force 
 $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $appId, $securePassword
 Connect-AzAccount -Credential $cred -ServicePrincipal -Tenant $tenantId
-
-$Global:topicId = (Get-AzEventGridTopic -ResourceGroupName $resourceGroup -Name $topic).Id
-$Global:storageId = (Get-AzStorageAccount -ResourceGroupName $resourceGroup -Name $storage).Id
-
-$Global:deadlink="/subscriptions/" + $subscriptionId + "/resourceGroups/" + $resourceGroup + "/providers/Microsoft.Storage/storageAccounts/" + $deadstorage + "/blobServices/default/containers/" + $deadContainer
-
-
- $topics = Get-AzEventGridTopic -ResourceGroup $Global:resourceGroup
-    foreach ($topic in $topics.PsTopicsList) 
-    {
-        $subs = Get-AzEventGridSubscription -ResourceGroupName $topic.ResourceGroupName -TopicName $topic.TopicName
-        foreach ($sub in $subs.PsEventSubscriptionsList) 
-        {
-            echo $sub
-        }
-    }
