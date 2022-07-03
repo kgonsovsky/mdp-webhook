@@ -20,11 +20,11 @@
     "APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=6e6bce0b-be74-42a6-a012-a7b728a69f41;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/",
     "suffix": "-mdp",
     "appId": "d105bb3d-cfe5-4acf-a3bf-450e46a9209f",
-    "topic": "test-event-grid-mdp-topic",
     "deadcontainer": "deadcontainer",
     "subscriptionId": "5258beac-d2a1-4e36-8e1b-2d1fbe17450f",
     "tenantId": "c7223f2c-1ba2-43c8-be7f-57e6e1465036",
     "deadstorage": "testmdpwebhookstorage2",
+    "defaultTopic": "test-event-grid-mdp-topic",
     "WEBSITE_RUN_FROM_PACKAGE": "0"
   }
 }

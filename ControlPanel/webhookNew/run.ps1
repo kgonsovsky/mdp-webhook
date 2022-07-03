@@ -18,6 +18,15 @@ if (-not $subscriptionName) {
     $subscriptionName = $Request.Body.subscriptionName
 }
 
+# topicName
+$topicName = $Request.Query.topicName
+if (-not $topicName) {
+    $topicName = $Request.Body.topicName
+}
+if (-not $topicName) {
+    $topicName = $env:defaultTopic
+}
+
 # endPoint
 $endPoint = $Request.Query.endPoint
 if (-not $endPoint) {
@@ -25,8 +34,8 @@ if (-not $endPoint) {
 }
 
 # process
-$statuscode =[HttpStatusCode]::OK
-$body="OK"
+$statuscode =[HttpStatusCode]::BadRequest
+$body="error"
 if (-not $endPoint -or -not $subscriptionName) {
     $body = "subscriptName & endPoint fields are mandatory"
     $statuscode=[HttpStatusCode]::BadRequest
@@ -36,8 +45,9 @@ if (-not $endPoint -or -not $subscriptionName) {
 
     $dead_destination="/subscriptions/" + $env:subscriptionId + "/resourceGroups/" + $env:resourceGroup + "/providers/Microsoft.Storage/storageAccounts/" + $env:deadstorage + "/blobServices/default/containers/" + $env:deadContainer
     
-    Remove-AzEventGridSubscription -ResourceGroupName $env:resourceGroup -TopicName $env:topic -EventSubscriptionName $subscriptionName
-    $body = New-AzEventGridSubscription -ResourceGroupName $env:resourceGroup -TopicName $env:topic -EventSubscriptionName $subscriptionName -Endpoint $endPoint -DeadLetterEndpoint $dead_destination
+    Remove-AzEventGridSubscription -ResourceGroupName $env:resourceGroup -TopicName $topicName -EventSubscriptionName $subscriptionName
+    $statuscode =[HttpStatusCode]::OK
+    $body = New-AzEventGridSubscription -ResourceGroupName $env:resourceGroup -TopicName $topicName -EventSubscriptionName $subscriptionName -Endpoint $endPoint -DeadLetterEndpoint $dead_destination
 }
 
 # return

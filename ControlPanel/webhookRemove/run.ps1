@@ -18,9 +18,18 @@ if (-not $subscriptionName) {
     $subscriptionName = $Request.Body.subscriptionName
 }
 
+# topicName
+$topicName = $Request.Query.topicName
+if (-not $topicName) {
+    $topicName = $Request.Body.topicName
+}
+if (-not $topicName) {
+    $topicName = $env:defaultTopic
+}
+
 # process
-$statuscode =[HttpStatusCode]::OK
-$body="OK"
+$statuscode =[HttpStatusCode]::BadRequest
+$body="error"
 if (-not $subscriptionName) {
     $body = "subscriptName field is mandatory"
     $statuscode=[HttpStatusCode]::BadRequest
@@ -28,7 +37,8 @@ if (-not $subscriptionName) {
     $subscriptionName = $env:prefix + $subscriptionName + $env:suffix
     Write-Host "Createing subscription ${subscriptionName} with endpint ${endPoint}..."
 
-    $body = Remove-AzEventGridSubscription -ResourceGroupName $env:resourceGroup -TopicName $env:topic -EventSubscriptionName $subscriptionName
+    $statuscode =[HttpStatusCode]::OK
+    $body = Remove-AzEventGridSubscription -ResourceGroupName $env:resourceGroup -TopicName $topicName -EventSubscriptionName $subscriptionName
 }
 
 # return
