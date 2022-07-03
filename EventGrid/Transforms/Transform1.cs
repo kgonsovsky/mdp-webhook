@@ -2,9 +2,9 @@
 
 namespace EventGrid.Transforms
 {
-    internal class Transform1
+    public class Transform1 : IMdpTransform
     {
-        internal JsonObject Transform(string jsonString)
+        public JsonObject Transform(string jsonString)
         {
             var root = JsonNode.Parse(jsonString).AsObject();
             root.Remove("_id");

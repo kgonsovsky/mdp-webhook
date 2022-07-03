@@ -3469,11 +3469,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\EventGrid\\EventGrid.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\EventGrid\\EventGrid.csproj",
       "projectName": "EventGrid",
-      "projectPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\EventGrid\\EventGrid.csproj",
+      "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\EventGrid\\EventGrid.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\EventGrid\\obj\\",
+      "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\EventGrid\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -3534,7 +3534,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

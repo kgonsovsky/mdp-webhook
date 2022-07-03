@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DVUPWzxZNljgmans1t+Ok6gjAG1DmR/tDwYH0991GmNE5BM227x5EklBF1CtRQ6I0qiRMTA+OS5Af5MAhwwlGg==",
+  "dgSpecHash": "ekvMUpiPsyNE27igRUFbL5qBveKIJhe7xpsSTgr3iSwW+hYKjy9uhisXWDvGs88Hp7yRoAkqTdAYhNQxfzQuUA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj",
   "expectedPackageFiles": [

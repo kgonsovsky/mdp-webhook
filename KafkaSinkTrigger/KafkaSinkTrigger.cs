@@ -37,9 +37,8 @@ namespace KafkaSinkTrigger
 
             var topic = req.Headers["topic"];
 
-            var x = EG.ExtractMdpObject(requestBody);
 
-            var y = EG.PostToEventGridWithStandartSchema(x, topic, "Sink Connector");
+            var y = EG.PostToEventGrid(requestBody, topic, _settings,"Sink Connector" );
 
             return new OkObjectResult(y);
         }

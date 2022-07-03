@@ -1,11 +1,20 @@
+using EventGrid;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Kafka;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 
 namespace KafkaTrigger
 {
     public class KafkaTrigger
     {
+        private readonly MdpSettings _settings;
+
+        public KafkaTrigger(IOptions<MdpSettings> settings)
+        {
+            _settings = settings.Value;
+        }
+
         [FunctionName("test-event-grid-mdp-kafka-trigger-accounts")]
         public void RunAccounts(
             [KafkaTrigger("pkc-epwny.eastus.azure.confluent.cloud:9092BrokerList",
@@ -17,7 +26,7 @@ namespace KafkaTrigger
                           ConsumerGroup = "$Default")] KafkaEventData<string>[] events,
             ILogger log)
         {
-            Trigger.Run(events, log);
+            Trigger.Run(events, _settings, log);
         }
 
         [FunctionName("test-event-grid-mdp-kafka-trigger-loyalties")]
@@ -31,7 +40,7 @@ namespace KafkaTrigger
                           ConsumerGroup = "$Default")] KafkaEventData<string>[] events,
             ILogger log)
         {
-            Trigger.Run(events, log);
+            Trigger.Run(events, _settings, log);
         }
 
         [FunctionName("test-event-grid-mdp-kafka-trigger-reservations")]
@@ -45,7 +54,7 @@ namespace KafkaTrigger
                           ConsumerGroup = "$Default")] KafkaEventData<string>[] events,
             ILogger log)
         {
-            Trigger.Run(events, log);
+            Trigger.Run(events, _settings, log);
         }
     }
 }

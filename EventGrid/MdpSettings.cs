@@ -13,6 +13,7 @@ namespace EventGrid
             public string EndPoint { get; set;}
             public string Secret { get; set; }
             public string ResourceName { get; set; }
+            public string Transform { get; set; }
 
         }
         public Topic[] Topics{ get; set; }
