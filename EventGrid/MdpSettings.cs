@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace EventGrid
 {
@@ -10,12 +6,21 @@ namespace EventGrid
     {
         public class Topic
         {
+            [JsonPropertyName("endPoint")]
             public string EndPoint { get; set;}
+
+            [JsonPropertyName("secret")]
             public string Secret { get; set; }
+
+            [JsonPropertyName("resourceName")]
             public string ResourceName { get; set; }
+
+            [JsonPropertyName("transform")]
             public string Transform { get; set; }
 
         }
+
+        [JsonPropertyName("topics")]
         public Topic[] Topics{ get; set; }
     }
 }

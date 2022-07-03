@@ -7,7 +7,6 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using EventGrid;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace KafkaSinkTrigger
