@@ -12,7 +12,7 @@ namespace KafkaTrigger
     {
         public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
         {
-            string cs = Environment.GetEnvironmentVariable("ConnectionString");
+            string cs = Environment.GetEnvironmentVariable("MdpSettings");
             builder.ConfigurationBuilder.AddAzureAppConfiguration(cs);
         }
 
