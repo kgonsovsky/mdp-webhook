@@ -21,6 +21,7 @@ $titles = @("DeliverySuccessCount", "DeliveryAttemptFailCount")
 class item
 {
     [String]$TopicName
+    [String]$EventSubscriptionName
     [DateTime]$Date
     [int]$DeliverySuccessCount
     [int]$DeliveryAttemptFailCount
@@ -29,56 +30,51 @@ class item
 
 $result = [System.Collections.Generic.List[item]]::new()
 
-
 $topics = Get-AzEventGridTopic -ResourceGroup $resourceGroup
 foreach ($topic in $topics.PsTopicsList) 
 {
-    #echo $topic.TopicName
 
-    $item = [item]::new()
-    $item.TopicName = $topic.TopicName
-
-    foreach ($title in $titles)
+    $subs = Get-AzEventGridSubscription -ResourceGroupName $resourceGroup -TopicName $topic.TopicName
+    foreach ($sub in $subs.PsEventSubscriptionsList) 
     {
-        $m = Get-AzMetric -ResourceId $topic.Id -MetricName $title -TimeGrain 01:00:00
-        #echo $m
-        
+        $item = [item]::new()
+        $item.TopicName = $topic.TopicName
+        $item.EventSubscriptionName = $sub.EventSubscriptionName
 
-        foreach ($dt in $m.Data)
+        foreach ($title in $titles)
         {
-            if ($title -eq "DeliverySuccessCount"){
-               $item.DeliverySuccessCount = $dt.Total
-            }
-            if ($title -eq "DeliveryAttemptFailCount"){
-               $item.DeliveryAttemptFailCount = $dt.Total
-            }
-           $item.Date = $dt.TimeStamp
-        }
+            $m = Get-AzMetric -ResourceId $sub.Id -MetricName $title -TimeGrain 01:00:00
+            echo $m
 
-        foreach ($tm in $m.Timeseries)
-        {
+            foreach ($dt in $m.Data)
+            {
+                if ($title -eq "DeliverySuccessCount"){
+                   $item.DeliverySuccessCount = $dt.Total
+                }
+                if ($title -eq "DeliveryAttemptFailCount"){
+                   $item.DeliveryAttemptFailCount = $dt.Total
+                }
+               $item.Date = $dt.TimeStamp
+            }
+
+            foreach ($tm in $m.Timeseries)
+            {
            
+            }
         }
-    }
     
-    $result.Add($item);
+        $result.Add($item);
+
+    }
 }
 
 
 
-echo $result
+#echo $result
 
 
-    <# 
 
 
-   # $subs = Get-AzEventGridSubscription -ResourceGroupName $resourceGroup -TopicName $topic.TopicName
-   # foreach ($sub in $subs.PsEventSubscriptionsList) 
-   # {
-   #     echo $sub.EventSubscriptionName
-   #     $sub.Destination.
-  #  }
-} #>
 
 
 
