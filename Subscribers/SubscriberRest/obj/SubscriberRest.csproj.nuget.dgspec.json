@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj": {}
+    "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj": {
+    "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj",
+        "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj",
         "projectName": "SubscriberRest",
-        "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj",
+        "projectPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Subscribers\\SubscriberRest\\SubscriberRest.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Subscribers\\SubscriberRest\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Subscribers\\SubscriberRest\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -3672,9 +3672,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Faker\\Faker.csproj",
+      "projectUniqueName": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Faker\\Faker.csproj",
       "projectName": "Faker",
-      "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Faker\\Faker.csproj",
+      "projectPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Faker\\Faker.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Faker\\obj\\",
       "projectStyle": "PackageReference",
@@ -3697,8 +3697,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\EventGrid\\EventGrid.csproj": {
-              "projectPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\EventGrid\\EventGrid.csproj"
+            "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\EventGrid\\EventGrid.csproj": {
+              "projectPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\EventGrid\\EventGrid.csproj"
             }
           }
         }

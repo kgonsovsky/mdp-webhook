@@ -10,38 +10,83 @@ $securePassword = $appSecret | ConvertTo-SecureString -AsPlainText -Force
 $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $appId, $securePassword
 Connect-AzAccount -Credential $cred -ServicePrincipal -Tenant $tenantId
 
+##$config = (Get-AzAppConfigurationStore -ResourceGroupName $resourceGroup)[0]
+
+#$MyConfig = Get-AzAppConfigurationStoreKeyValue -Store $config.Name -Label Production
+
+#echo $MyConfig
+
+$titles = @("DeliverySuccessCount", "DeliveryAttemptFailCount")
+ 
 class item
 {
     [String]$TopicName
+    [DateTime]$Date
+    [int]$DeliverySuccessCount
+    [int]$DeliveryAttemptFailCount
    
 }
 
 $result = [System.Collections.Generic.List[item]]::new()
 
+
 $topics = Get-AzEventGridTopic -ResourceGroup $resourceGroup
 foreach ($topic in $topics.PsTopicsList) 
 {
+    #echo $topic.TopicName
+
     $item = [item]::new()
     $item.TopicName = $topic.TopicName
-    $result.Add($item);
-   
 
-    $subs = Get-AzEventGridSubscription -ResourceGroupName $resourceGroup -TopicName $topic.TopicName
-    foreach ($sub in $subs.PsEventSubscriptionsList) 
+    foreach ($title in $titles)
     {
-        echo $sub.EventSubscriptionName
-        $sub.Destination
+        $m = Get-AzMetric -ResourceId $topic.Id -MetricName $title -TimeGrain 01:00:00
+        #echo $m
+        
+
+        foreach ($dt in $m.Data)
+        {
+            if ($title -eq "DeliverySuccessCount"){
+               $item.DeliverySuccessCount = $dt.Total
+            }
+            if ($title -eq "DeliveryAttemptFailCount"){
+               $item.DeliveryAttemptFailCount = $dt.Total
+            }
+           $item.Date = $dt.TimeStamp
+        }
+
+        foreach ($tm in $m.Timeseries)
+        {
+           
+        }
     }
+    
+    $result.Add($item);
 }
 
+
+
 echo $result
+
+
+    <# 
+
+
+   # $subs = Get-AzEventGridSubscription -ResourceGroupName $resourceGroup -TopicName $topic.TopicName
+   # foreach ($sub in $subs.PsEventSubscriptionsList) 
+   # {
+   #     echo $sub.EventSubscriptionName
+   #     $sub.Destination.
+  #  }
+} #>
+
 
 
 <# 
 
 $resId = "/subscriptions/5258beac-d2a1-4e36-8e1b-2d1fbe17450f/resourceGroups/test-rg-mdp-webhook/providers/Microsoft.EventGrid/topics/test-event-grid-mdp-topic"
 
-#Get-AzMetricDefinition -ResourceId $resId
+Get-AzMetricDefinition -ResourceId $resId
 
 
 $metric = Get-AzMetric -ResourceId $resId -MetricName "DeliverySuccessCount" -TimeGrain 01:00:00 -DetailedOutput
