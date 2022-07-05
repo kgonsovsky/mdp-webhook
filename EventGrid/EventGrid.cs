@@ -65,7 +65,7 @@ namespace EventGrid
             catch (Exception e)
             {
                 log.LogCritical($"{e.Message}");
-                return new BadRequestObjectResult("");
+                return new BadRequestObjectResult(e.Message);
             }
          
             return new OkObjectResult("");
