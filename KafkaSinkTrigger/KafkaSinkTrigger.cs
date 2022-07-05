@@ -45,7 +45,7 @@ namespace KafkaSinkTrigger
 
             var obj = new KafkaEventData<string>() { Value = requestBody, Topic = topic };
             obj.Value = requestBody;
-            obj.Topic = topic;
+            obj.Topic = topic + " (sink connector)";
             var y = EG.PostToEventGrid(obj, _settings,log);
 
             return y;
