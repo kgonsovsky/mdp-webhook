@@ -58,12 +58,14 @@ namespace EventGrid
                     catch (Exception e)
                     {
                         log.LogError($"{e.Message}");
+                        return new BadRequestObjectResult(e.Message);
                     }
                 }
             }
             catch (Exception e)
             {
                 log.LogCritical($"{e.Message}");
+                return new BadRequestObjectResult("");
             }
          
             return new OkObjectResult("");
