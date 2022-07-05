@@ -48,7 +48,7 @@ namespace KafkaSinkTrigger
             obj.Topic = topic;
             var y = EG.PostToEventGrid(obj, _settings,log);
 
-            return new OkObjectResult(y);
+            return y;
         }
     }
 }
