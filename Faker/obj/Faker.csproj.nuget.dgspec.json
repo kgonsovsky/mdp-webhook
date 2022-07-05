@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[2.2.5, )"
             },
+            "Microsoft.Azure.WebJobs.Extensions.Kafka": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
@@ -83,7 +87,7 @@
         "projectName": "Faker",
         "projectPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Faker\\Faker.csproj",
         "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Administrator\\Source\\Repos\\mdp-webhook\\Faker\\obj\\",
+        "outputPath": "C:\\Users\\Administrator\\source\\repos\\mdp-webhook\\Faker\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

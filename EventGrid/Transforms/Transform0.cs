@@ -1,13 +1,31 @@
 ﻿using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
+using Microsoft.Azure.WebJobs.Extensions.Kafka;
 
 namespace EventGrid.Transforms
 {
-    public class Transform0: IMdpTransform
+    public class Transform0Object : MdpTransformObject
     {
-        public JsonObject Transform(string jsonString)
+        [JsonPropertyName("fullDocument")]
+        public JsonObject FullDocument { get; set; }
+    }
+
+    public class Transform0: MdpTransform
+    {
+        public override MdpTransformObject Transform(KafkaEventData<string> kevent, string json)
         {
-            var root = JsonNode.Parse(jsonString).AsObject();
-            return root;
+            var root = JsonNode.Parse(json).AsObject();
+            var result = new Transform0Object();
+            BaseTransform(result, root, kevent);
+            try
+            {
+                result.FullDocument = root["fullDocument"].AsObject();
+            }
+            catch (Exception e)
+            {
+                result.Debug.Exception = e.Message;
+            }
+            return result;
         }
     }
 }

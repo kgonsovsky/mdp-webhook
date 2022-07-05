@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using EventGrid;
+using Microsoft.Azure.WebJobs.Extensions.Kafka;
 using Microsoft.Extensions.Options;
 
 namespace KafkaSinkTrigger
@@ -34,10 +35,18 @@ namespace KafkaSinkTrigger
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
-            var topic = req.Headers["topic"];
+            var topic = "";
+            if (string.IsNullOrEmpty(topic))
+                topic = req.Query["topic"];
+            if (string.IsNullOrEmpty(topic))
+                topic = req.Headers["topic"];
+            if (string.IsNullOrEmpty(topic))
+                topic = "unknown_topic";
 
-
-            var y = EG.PostToEventGrid(requestBody, topic, _settings,"Sink Connector" );
+            var obj = new KafkaEventData<string>() { Value = requestBody, Topic = topic };
+            obj.Value = requestBody;
+            obj.Topic = topic;
+            var y = EG.PostToEventGrid(obj, _settings,log);
 
             return new OkObjectResult(y);
         }

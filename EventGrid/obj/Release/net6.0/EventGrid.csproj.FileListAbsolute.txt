@@ -10,3 +10,4 @@ C:\Users\Administrator\Source\Repos\mdp-webhook\EventGrid\obj\Release\net6.0\Eve
 C:\Users\Administrator\Source\Repos\mdp-webhook\EventGrid\obj\Release\net6.0\refint\EventGrid.dll
 C:\Users\Administrator\Source\Repos\mdp-webhook\EventGrid\obj\Release\net6.0\EventGrid.pdb
 C:\Users\Administrator\Source\Repos\mdp-webhook\EventGrid\obj\Release\net6.0\ref\EventGrid.dll
+C:\Users\Administrator\source\repos\mdp-webhook\EventGrid\bin\Release\net6.0\cacert.pem

@@ -16,15 +16,15 @@ Connect-AzAccount -Credential $cred -ServicePrincipal -Tenant $tenantId
 
 #echo $MyConfig
 
-$titles = @("DeliverySuccessCount", "DeliveryAttemptFailCount")
+$titles = @("DeliverySuccessCounts", "DeliveryFailureCounts")
  
 class item
 {
     [String]$TopicName
     [String]$EventSubscriptionName
     [DateTime]$Date
-    [int]$DeliverySuccessCount
-    [int]$DeliveryAttemptFailCount
+    [int]$DeliverySuccessCounts
+    [int]$DeliveryFailureCounts
    
 }
 
@@ -48,11 +48,11 @@ foreach ($topic in $topics.PsTopicsList)
 
             foreach ($dt in $m.Data)
             {
-                if ($title -eq "DeliverySuccessCount"){
-                   $item.DeliverySuccessCount = $dt.Total
+                if ($title -eq "DeliverySuccessCounts"){
+                   $item.DeliveryFailureCounts = $dt.Total
                 }
-                if ($title -eq "DeliveryAttemptFailCount"){
-                   $item.DeliveryAttemptFailCount = $dt.Total
+                if ($title -eq "DeliveryFailureCounts"){
+                   $item.DeliveryFailureCounts = $dt.Total
                 }
                $item.Date = $dt.TimeStamp
             }

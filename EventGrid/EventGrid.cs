@@ -4,53 +4,68 @@ using Azure.Messaging.EventGrid;
 using Azure;
 using System.Text.Json.Nodes;
 using EventGrid.Transforms;
+using Microsoft.Azure.WebJobs.Extensions.Kafka;
+using Microsoft.Extensions.Logging;
 
 namespace EventGrid
 {
     public static class EG
     {
-        private static IMdpTransform GetTransform(string transform)
+        private static MdpTransform GetTransform(string transform)
         {
             if (string.IsNullOrEmpty(transform))
                 return new Transform0();
             Type t = Type.GetType($"EventGrid.Transforms.{transform}");
-            var obj = Activator.CreateInstance(t) as IMdpTransform;
+            if (t == null)
+                return new Transform0();
+            var obj = Activator.CreateInstance(t) as MdpTransform;
             return obj;
         }
 
-        private static JsonObject ExtractMdpObject(string requestBody, MdpSettings.Topic topic)
+        public static MdpTransformObject ExtractMdpObject(KafkaEventData<string> kevent, MdpSettings.Topic topic)
         {
+            var mdpJson = kevent.Value.Replace(@"\", "");
             var transform = GetTransform(topic.Transform);
             var z = @"payload"":""(.*)(?=}})";
             var regex = new Regex(z, RegexOptions.Multiline | RegexOptions.CultureInvariant | RegexOptions.IgnorePatternWhitespace | RegexOptions.Compiled);
-            Match m = regex.Match(requestBody);
-            var mdpJson = m.Value.Substring(10) + "}}";
-
-            var mdpObj = transform.Transform(mdpJson);
-
+            Match m = regex.Match(mdpJson);
+            mdpJson = m.Value.Substring(10) + "}}";
+            var mdpObj = transform.Transform(kevent, mdpJson);
             return mdpObj;
         }
 
-        public static ObjectResult PostToEventGrid(string payload, string topicName, MdpSettings setting, string sender)
+        public static ObjectResult PostToEventGrid(KafkaEventData<string> kevent, MdpSettings setting, ILogger log)
         {
-            foreach (var topic in setting.Topics)
+            try
             {
-                AzureKeyCredential credential = new AzureKeyCredential(topic.Secret);
-                Uri endpoint = new Uri(topic.EndPoint);
-
-                var mdpPayload = ExtractMdpObject(payload, topic);
-
-                EventGridPublisherClient client = new EventGridPublisherClient(endpoint, credential);
-                EventGridEvent firstEvent = new EventGridEvent(
-                    subject: $"{(topicName == null ? "null" : topicName)} ({sender}) ({topic.ResourceName} / {topic.Transform}",
-                    eventType: mdpPayload["operationType"].GetValue<string>(),
-                    dataVersion: "1.0",
-                    data: mdpPayload
-                );
-                var x = client.SendEventAsync(firstEvent).Result;
-                var y = new StreamReader(x.ContentStream).ReadToEnd();
-           
+                foreach (var topic in setting.Topics)
+                {
+                    try
+                    {
+                        AzureKeyCredential credential = new AzureKeyCredential(topic.Secret);
+                        Uri endpoint = new Uri(topic.EndPoint);
+                        var mdpPayload = ExtractMdpObject(kevent, topic);
+                        EventGridPublisherClient client = new EventGridPublisherClient(endpoint, credential);
+                        EventGridEvent firstEvent = new EventGridEvent(
+                            subject: mdpPayload.Topic,
+                            eventType: mdpPayload.OperationType,
+                            dataVersion: "1.0",
+                            data: mdpPayload
+                        );
+                        var x = client.SendEventAsync(firstEvent).Result;
+                        var y = new StreamReader(x.ContentStream).ReadToEnd();
+                    }
+                    catch (Exception e)
+                    {
+                        log.LogError($"{e.Message}");
+                    }
+                }
             }
+            catch (Exception e)
+            {
+                log.LogCritical($"{e.Message}");
+            }
+         
             return new OkObjectResult("");
         }
     }
