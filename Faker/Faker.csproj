@@ -17,7 +17,7 @@
     <None Update="configs\standalone_kafka.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="configs\confluent_kafka.txt">
+    <None Update="configs\confluent_kafka.txt2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="topics\topic.DataHub.accounts.txt">

@@ -52,8 +52,11 @@ namespace EventGrid
                             dataVersion: "1.0",
                             data: mdpPayload
                         );
-                        var x = client.SendEventAsync(firstEvent).Result;
-                        var y = new StreamReader(x.ContentStream).ReadToEnd();
+                        if (setting.Enabled)
+                        {
+                            var x = client.SendEventAsync(firstEvent).Result;
+                            var y = new StreamReader(x.ContentStream).ReadToEnd();
+                        }
                     }
                     catch (Exception e)
                     {

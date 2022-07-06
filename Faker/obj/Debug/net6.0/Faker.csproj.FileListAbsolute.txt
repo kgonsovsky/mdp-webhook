@@ -3,8 +3,6 @@ C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\topics\to
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\topics\topic.datahub.reservations.txt
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\Faker.exe
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\configs\confluent_kafka.pem
-C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\configs\confluent_kafka.txt
-C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\configs\standalone_kafka.txt
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\Faker.deps.json
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\Faker.runtimeconfig.json
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\Faker.dll
@@ -101,3 +99,5 @@ C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\Microsoft
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\Microsoft.Extensions.Logging.Configuration.dll
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\configs\confluent_kafka.txt2
+C:\Users\Administrator\source\repos\mdp-webhook\Faker\bin\Debug\net6.0\configs\standalone_kafka.txt

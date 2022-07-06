@@ -1,7 +1,0 @@
-﻿#kafka config
-bootstrap.servers=pkc-epwny.eastus.azure.confluent.cloud:9092
-security.protocol=SASL_SSL
-sasl.mechanisms=PLAIN
-sasl.username=FSWDPEVFDNYLJRRJ
-sasl.password=oPDfLFWA8IKr5cbEZ+0V/Cgrnv1QbeE5gRsM2GBrDUSYe8Bi9JMNZLznlbDYU/my
-session.timeout.ms=45000

@@ -4,9 +4,6 @@
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="KafkaTriggerPublicServer.cs" />
-  </ItemGroup>
-  <ItemGroup>
 	  <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.Kafka" Version="3.4.0" />
 	  <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
 	  <PackageReference Include="Microsoft.Extensions.Configuration.AzureAppConfiguration" Version="5.0.0" />
@@ -26,9 +23,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="C:\Users\Administrator\.nuget\packages\microsoft.azure.webjobs.extensions.kafka\3.3.2\build\cacert.pem" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="KafkaTriggerPublicServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventGrid\EventGrid.csproj" />

@@ -29,9 +29,7 @@ namespace KafkaSinkTrigger
             [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
             ILogger log)
         {
-
-            string message = _settings.Topics.First().EndPoint;
-            log.LogInformation(message);
+            log.LogInformation($"Sink: {req.QueryString}");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
 
@@ -46,8 +44,7 @@ namespace KafkaSinkTrigger
             var obj = new KafkaEventData<string>() { Value = requestBody, Topic = topic };
             obj.Value = requestBody;
             obj.Topic = topic + " (sink connector)";
-            var y = EG.PostToEventGrid(obj, _settings,log);
-
+            var y = EG.PostToEventGrid(obj, _settings, log);
             return y;
         }
     }

@@ -23,10 +23,10 @@ namespace KafkaTrigger
         //                  Password = "oPDfLFWA8IKr5cbEZ+0V/Cgrnv1QbeE5gRsM2GBrDUSYe8Bi9JMNZLznlbDYU/my",
         //                  Protocol = BrokerProtocol.SaslSsl,
         //                  AuthenticationMode = BrokerAuthenticationMode.Plain,
-        //                  ConsumerGroup = "$Default")] KafkaEventData<string>[] events,
+        //                  ConsumerGroup = "$Default")] KafkaEventData<string> events,
         //    ILogger log)
         //{
-        //    Trigger.Run(events, _settings, log);
+        //    Trigger.Run(new KafkaEventData<string>[]{events}, _settings, log);
         //}
 
         //[FunctionName("test-event-grid-mdp-kafka-trigger-loyalties")]
@@ -37,22 +37,38 @@ namespace KafkaTrigger
         //                  Password = "oPDfLFWA8IKr5cbEZ+0V/Cgrnv1QbeE5gRsM2GBrDUSYe8Bi9JMNZLznlbDYU/my",
         //                  Protocol = BrokerProtocol.SaslSsl,
         //                  AuthenticationMode = BrokerAuthenticationMode.Plain,
-        //                  ConsumerGroup = "$Default")] KafkaEventData<string>[] events,
+        //                  ConsumerGroup = "$Default")] KafkaEventData<string> events,
         //    ILogger log)
         //{
-        //    Trigger.Run(events, _settings, log);
+        //    Trigger.Run(new KafkaEventData<string>[]{events}, _settings, log);
         //}
 
         [FunctionName("test-event-grid-mdp-kafka-trigger-reservations")]
         public void RunReservations(
-            [KafkaTrigger("10.40.5.21:9094",
+            [KafkaTrigger("%mdpSettings:brokerList%",
                           "topic.DataHub.reservations",
                           Protocol = BrokerProtocol.Plaintext,
                           AuthenticationMode = BrokerAuthenticationMode.NotSet,
-                          ConsumerGroup = "$Default")] KafkaEventData<string>[] events,
+                          ConsumerGroup = "%mdpSettings:consumerGroup%")] KafkaEventData<string> events,
             ILogger log)
         {
-            Trigger.Run(events, _settings, log);
+            log.LogInformation($">>> {_settings.BrokerList},{_settings.ConsumerGroup},{_settings.Enabled}: {events.Topic}, time_stamp: {events.Timestamp}, offset: {events.Offset}");
+            Trigger.Run(new KafkaEventData<string>[] { events }, _settings, log);
         }
+
+
+        [FunctionName("test-event-grid-mdp-kafka-trigger-reservationsQ")]
+        public void RunReservationsQ(
+            [KafkaTrigger("167.86.107.116:9092",
+                "topic.DataHub.reservations",
+                Protocol = BrokerProtocol.Plaintext,
+                AuthenticationMode = BrokerAuthenticationMode.NotSet,
+                ConsumerGroup = "%mdpSettings:consumerGroup%")] KafkaEventData<string> events,
+            ILogger log)
+        {
+            log.LogInformation($">>> {"167.86.107.116:9092"},{_settings.ConsumerGroup},{_settings.Enabled}:, time_stamp: {events.Timestamp}, offset: {events.Offset}");
+            Trigger.Run(new KafkaEventData<string>[] { events }, _settings, log);
+        }
+
     }
 }

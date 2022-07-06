@@ -45,7 +45,7 @@ namespace EventGrid
                 Partition = kevent.Partition,
                 Timestamp = kevent.Timestamp
             };
-            obj.OperationType = root["operationType"].GetValue<string>();
+            obj.OperationType = root["operationType"]?.GetValue<string>() ?? "unknown";
             obj.Topic = kevent.Topic;
         }
     }

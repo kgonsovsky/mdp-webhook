@@ -25,7 +25,7 @@ namespace Faker
 {
     internal class Program
     {
-        internal const int Interval = 30;
+        internal const int Interval = 1;
 
         internal static List<ClientConfig> Configs;
 
@@ -77,9 +77,10 @@ namespace Faker
                 int numMessages = 1;
                 for (int i=0; i<numMessages; ++i)
                 {
-                    var key = "bookingEvent";
+                    var key = "bookingEvent{_" + GlobalNumer.ToString();
 
                     var val = System.IO.File.ReadAllText("./topics/" + topic + ".txt");
+                    val = val.Replace(@"""operationType"": ""replace""", $@"""operationType"": ""op{GlobalNumer}""");
      
                     Console.WriteLine($"Producing record: {key} {val}");
 
@@ -104,6 +105,24 @@ namespace Faker
             }
         }
 
+        private static int GlobalNumer;
+
+        private static void incGlobalnumber()
+        {
+            try
+            {
+                GlobalNumer = int.Parse(File.ReadAllText("./global.txt"));
+            }
+            catch (Exception e)
+            {
+                GlobalNumer = 1;
+            }
+
+            GlobalNumer++;
+            File.WriteAllText("./global.txt",GlobalNumer.ToString());
+
+        }
+
 
         private static async Task Main(string[] args)
         {
@@ -118,6 +137,7 @@ namespace Faker
 
             while (true)
             {
+                incGlobalnumber();
                 foreach (var c in Configs)
                 {
                     foreach (var x in Directory.EnumerateFiles("./topics", "*.txt"))

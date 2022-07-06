@@ -10,7 +10,6 @@ namespace KafkaTrigger
         {
             foreach (KafkaEventData<string> eventData in events)
             {
-                log.LogInformation($"kafka topic: {eventData.Topic}, time_stamp: {eventData.Timestamp}, offset: {eventData.Offset}");
                 var y = EG.PostToEventGrid(eventData, setting,log);
             }
         }
