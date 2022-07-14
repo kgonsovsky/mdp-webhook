@@ -57,18 +57,18 @@ namespace KafkaTrigger
         }
 
 
-        [FunctionName("test-event-grid-mdp-kafka-trigger-reservationsQ")]
-        public void RunReservationsQ(
-            [KafkaTrigger("167.86.107.116:9092",
-                "topic.DataHub.reservations",
-                Protocol = BrokerProtocol.Plaintext,
-                AuthenticationMode = BrokerAuthenticationMode.NotSet,
-                ConsumerGroup = "%mdpSettings:consumerGroup%")] KafkaEventData<string> events,
-            ILogger log)
-        {
-            log.LogInformation($">>> {"167.86.107.116:9092"},{_settings.ConsumerGroup},{_settings.Enabled}:, time_stamp: {events.Timestamp}, offset: {events.Offset}");
-            Trigger.Run(new KafkaEventData<string>[] { events }, _settings, log);
-        }
+        //[FunctionName("test-event-grid-mdp-kafka-trigger-reservationsQ")]
+        //public void RunReservationsQ(
+        //    [KafkaTrigger("167.86.107.116:9092",
+        //        "topic.DataHub.reservations",
+        //        Protocol = BrokerProtocol.Plaintext,
+        //        AuthenticationMode = BrokerAuthenticationMode.NotSet,
+        //        ConsumerGroup = "%mdpSettings:consumerGroup%")] KafkaEventData<string> events,
+        //    ILogger log)
+        //{
+        //    log.LogInformation($">>> {"167.86.107.116:9092"},{_settings.ConsumerGroup},{_settings.Enabled}:, time_stamp: {events.Timestamp}, offset: {events.Offset}");
+        //    Trigger.Run(new KafkaEventData<string>[] { events }, _settings, log);
+        //}
 
     }
 }

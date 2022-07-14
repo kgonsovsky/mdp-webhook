@@ -57,6 +57,7 @@ namespace EventGrid
                             var x = client.SendEventAsync(firstEvent).Result;
                             var y = new StreamReader(x.ContentStream).ReadToEnd();
                         }
+                        log.LogInformation(firstEvent.EventType);
                     }
                     catch (Exception e)
                     {

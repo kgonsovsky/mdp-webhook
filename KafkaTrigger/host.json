@@ -1,11 +1,17 @@
 {
-    "version": "2.0",
-    "logging": {
-        "applicationInsights": {
-            "samplingSettings": {
-                "isEnabled": true,
-                "excludedTypes": "Request"
-            }
-        }
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": {
+        "isEnabled": true,
+        "excludedTypes": "Request"
+      }
     }
+  },
+  "extensions": {
+    "kafka": {
+      "auto.offset.reset": "latest",
+      "LibkafkaDebug": "fetch"
+    }
+  }
 }
